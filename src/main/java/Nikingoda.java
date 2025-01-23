@@ -37,24 +37,40 @@ public class Nikingoda {
         this.echo();
     }
 
-    private void add(String description) {
-        Task task = new Task(description);
+    private void add(String description, int typeID, String deadline, String begin, String end) {
+        Task task;
+        if(typeID == 0) {
+            task = new Task(description, typeID);
+        } else if (typeID == 1) {
+            task = new Task(description, typeID, deadline);
+        } else {
+            task = new Task(description, typeID, begin, end);
+        }
         this.tasks.add(task);
         System.out.println("____________________________________________________________\n" +
-                "\t" + "added: " + description + "\n" +
+                "Got it, I've added this task: \n" + task + "\n" +
+                "Now you have " + tasks.size() + " task(s) in the list.\n" +
                 "____________________________________________________________");
     }
 
     private void list() {
+        System.out.println("____________________________________________________________");
         System.out.println("Here are the tasks in your list:");
         int i = 1;
         for (Task task : tasks) {
             System.out.println(i + ". " + task);
             i++;
         }
+        System.out.println("____________________________________________________________");
     }
 
-    public void operate() {
+    private void invalid() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Invalid syntax! Please try again.");
+        System.out.println("____________________________________________________________");
+    }
+
+    private void operate() {
         Scanner input = new Scanner(System.in);
         String command = input.nextLine();
         if (command.equals("bye")) {
@@ -67,7 +83,7 @@ public class Nikingoda {
                 int id = Integer.parseInt(command.substring(5));
                 this.mark(id - 1);
             } catch (Exception e) {
-                this.add(command);
+                this.invalid();
             } finally {
                 operate();
             }
@@ -77,13 +93,48 @@ public class Nikingoda {
                 int id = Integer.parseInt(command.substring(7));
                 this.unmark(id - 1);
             } catch (Exception e) {
-                this.add(command);
+                this.invalid();
             } finally {
                 operate();
             }
+        } else if (command.length() > 5 && command.substring(0, 5).equals("todo ")) {
+            try {
+                int typeID = 0;
+                this.add(command.substring(5), typeID, "", "", ""); //typeID = 0 for
+            } catch (Exception e) {
+                this.invalid();
+            } finally {
+                operate();
+            }
+        } else if (command.length() > 9 && command.substring(0, 9).equals("deadline ")) {
+            try {
+                int symbolId = command.indexOf(" /by ", 9);
+                String description = command.substring(9, symbolId);
+                String deadline = command.substring(symbolId + 5);
+                int typeID = 1;
+                this.add(description, typeID, deadline, "", "");
+            } catch(Exception e) {
+                this.invalid();
+            } finally {
+                this.operate();
+            }
+        } else if (command.length() > 6 && command.substring(0, 6).equals("event ")) {
+            try {
+                int beginId = command.indexOf(" /from ", 6);
+                int endId = command.indexOf(" /to ", beginId + 7);
+                String description = command.substring(6, beginId);
+                String begin = command.substring(beginId + 7, endId);
+                String end = command.substring(endId + 5);
+                int typeID = 2;
+                this.add(description, typeID, "", begin, end);
+            } catch (Exception e) {
+                this.invalid();
+            } finally {
+                this.operate();
+            }
         } else {
-            this.add(command);
-            operate();
+            this.invalid();
+            this.operate();
         }
     }
 
