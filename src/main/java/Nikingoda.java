@@ -39,7 +39,7 @@ public class Nikingoda {
 
     private void add(String description, int typeID, String deadline, String begin, String end) {
         Task task;
-        if(typeID == 0) {
+        if (typeID == 0) {
             task = new Task(description, typeID);
         } else if (typeID == 1) {
             task = new Task(description, typeID, deadline);
@@ -49,6 +49,15 @@ public class Nikingoda {
         this.tasks.add(task);
         System.out.println("____________________________________________________________\n" +
                 "Got it, I've added this task: \n" + task + "\n" +
+                "Now you have " + tasks.size() + " task(s) in the list.\n" +
+                "____________________________________________________________");
+    }
+
+    private void delete(int id) {
+        Task task = this.tasks.get(id);
+        this.tasks.remove(id);
+        System.out.println("____________________________________________________________\n" +
+                "Noted. I've removed this task: \n" + task + "\n" +
                 "Now you have " + tasks.size() + " task(s) in the list.\n" +
                 "____________________________________________________________");
     }
@@ -63,6 +72,7 @@ public class Nikingoda {
         }
         System.out.println("____________________________________________________________");
     }
+
     private void handleSyntaxError(String message) {
         System.out.println("____________________________________________________________");
         System.out.println(message);
@@ -106,7 +116,7 @@ public class Nikingoda {
             try {
                 int typeID = 0;
                 String description = command.substring(5);
-                if(description.isBlank()) {
+                if (description.isBlank()) {
                     throw new nikingodaException("Description must not be blank!!!");
                 }
                 this.add(description, typeID, "", "", ""); //typeID = 0 for
@@ -121,18 +131,18 @@ public class Nikingoda {
             try {
                 int symbolId = command.indexOf(" /by ", 9);
                 String description = command.substring(9, symbolId);
-                if(description.isBlank()) {
+                if (description.isBlank()) {
                     throw new nikingodaException("Description must not be blank!!!");
                 }
                 String deadline = command.substring(symbolId + 5);
-                if(deadline.isBlank()) {
+                if (deadline.isBlank()) {
                     throw new nikingodaException("Please indicate due date of deadline!!!");
                 }
                 int typeID = 1;
                 this.add(description, typeID, deadline, "", "");
             } catch (nikingodaException e) {
                 this.handleSyntaxError(e.getMessage());
-            } catch(Exception e) {
+            } catch (Exception e) {
                 this.invalid();
             } finally {
                 this.operate();
@@ -155,6 +165,23 @@ public class Nikingoda {
                 }
                 int typeID = 2;
                 this.add(description, typeID, "", begin, end);
+            } catch (nikingodaException e) {
+                this.handleSyntaxError(e.getMessage());
+            } catch (Exception e) {
+                this.invalid();
+            } finally {
+                this.operate();
+            }
+        } else if (command.length() >= 6 && command.substring(0, 6).equals("delete")) {
+            try {
+                if (command.length() == 6) {
+                    throw new nikingodaException("Please indicate deleted task ID");
+                }
+                if (!command.substring(0, 7).equals("delete ")) {
+                    throw new Exception();
+                }
+                int id = Integer.parseInt(command.substring(7));
+                this.delete(id - 1);
             } catch (nikingodaException e) {
                 this.handleSyntaxError(e.getMessage());
             } catch (Exception e) {
