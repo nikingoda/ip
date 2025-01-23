@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Nikingoda {
     private final ArrayList<Task> tasks = new ArrayList<>();
 
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
