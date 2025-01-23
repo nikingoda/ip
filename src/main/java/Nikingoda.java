@@ -63,6 +63,11 @@ public class Nikingoda {
         }
         System.out.println("____________________________________________________________");
     }
+    private void handleSyntaxError(String message) {
+        System.out.println("____________________________________________________________");
+        System.out.println(message);
+        System.out.println("____________________________________________________________");
+    }
 
     private void invalid() {
         System.out.println("____________________________________________________________");
@@ -100,7 +105,13 @@ public class Nikingoda {
         } else if (command.length() > 5 && command.substring(0, 5).equals("todo ")) {
             try {
                 int typeID = 0;
-                this.add(command.substring(5), typeID, "", "", ""); //typeID = 0 for
+                String description = command.substring(5);
+                if(description.isBlank()) {
+                    throw new nikingodaException("Description must not be blank!!!");
+                }
+                this.add(description, typeID, "", "", ""); //typeID = 0 for
+            } catch (nikingodaException e) {
+                this.handleSyntaxError(e.getMessage());
             } catch (Exception e) {
                 this.invalid();
             } finally {
@@ -110,9 +121,17 @@ public class Nikingoda {
             try {
                 int symbolId = command.indexOf(" /by ", 9);
                 String description = command.substring(9, symbolId);
+                if(description.isBlank()) {
+                    throw new nikingodaException("Description must not be blank!!!");
+                }
                 String deadline = command.substring(symbolId + 5);
+                if(deadline.isBlank()) {
+                    throw new nikingodaException("Please indicate due date of deadline!!!");
+                }
                 int typeID = 1;
                 this.add(description, typeID, deadline, "", "");
+            } catch (nikingodaException e) {
+                this.handleSyntaxError(e.getMessage());
             } catch(Exception e) {
                 this.invalid();
             } finally {
@@ -123,10 +142,21 @@ public class Nikingoda {
                 int beginId = command.indexOf(" /from ", 6);
                 int endId = command.indexOf(" /to ", beginId + 7);
                 String description = command.substring(6, beginId);
+                if (description.isBlank()) {
+                    throw new nikingodaException("Description must not be blank!!!");
+                }
                 String begin = command.substring(beginId + 7, endId);
+                if (begin.isBlank()) {
+                    throw new nikingodaException("Please indicate begin time!!!");
+                }
                 String end = command.substring(endId + 5);
+                if (end.isBlank()) {
+                    throw new nikingodaException("Please indicate end time!!!");
+                }
                 int typeID = 2;
                 this.add(description, typeID, "", begin, end);
+            } catch (nikingodaException e) {
+                this.handleSyntaxError(e.getMessage());
             } catch (Exception e) {
                 this.invalid();
             } finally {
