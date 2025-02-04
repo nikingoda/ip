@@ -1,56 +1,78 @@
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
+import java.nio.*;
 
 public class Nikingoda {
     private final ArrayList<Task> tasks = new ArrayList<>();
+    private final String home = System.getProperty("user.home");
 
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
         Nikingoda nikingoda = new Nikingoda();
         nikingoda.greet();
+        nikingoda.initialTasks();
         nikingoda.operate();
     }
 
-    public void greet() {
+    private void greet() {
         System.out.println("____________________________________________________________");
         System.out.println("\t" + "Hello! I'm nikingoda\n" +
                 "\t" + "What can I do for you?");
         System.out.println("____________________________________________________________");
     }
 
-    public void echo() {
-        Scanner input = new Scanner(System.in);
-        String command = input.nextLine();
-        if (command.equals("bye")) {
-            this.exit();
-            return;
+    private void initialTasks() {
+        Path path = Paths.get(home, "data");
+        File dir = new File(path.toString());
+        if (!dir.exists()) {
+            dir.mkdir();
         }
-        System.out.println("____________________________________________________________\n" +
-                command + "\n" +
-                "____________________________________________________________");
-        this.echo();
+        File taskFile = new File(Paths.get(home, "data", "tasks.txt").toString());
+        try {
+            if (!taskFile.exists()) {
+                taskFile.createNewFile();
+            } else {
+                try (Scanner scanTask = new Scanner(taskFile)) {
+                    while (scanTask.hasNextLine()) {
+                        String nextLine = scanTask.nextLine();
+                        String[] lineSplitted = nextLine.split("\\|");
+                        Boolean isDone = lineSplitted[1].equals("1");
+                        if (lineSplitted[0].equals("T")) {
+                            this.tasks.add(new Todo(lineSplitted[2], isDone));
+                        } else if (lineSplitted[0].equals("D")) {
+                            this.tasks.add(new Deadline(lineSplitted[2], lineSplitted[3], isDone));
+                        } else {
+                            this.tasks.add(new Event(lineSplitted[2], lineSplitted[3], lineSplitted[4], isDone));
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("There is problem with Tasks file!");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot create Tasks file!");
+        } catch (Exception e) {
+            System.out.println("There is problem with Tasks file!");
+        }
     }
 
-    private void add(String description, int typeID, String deadline, String begin, String end) {
-        Task task;
-        if (typeID == 0) {
-            task = new Task(description, typeID);
-        } else if (typeID == 1) {
-            task = new Task(description, typeID, deadline);
-        } else {
-            task = new Task(description, typeID, begin, end);
-        }
-        this.tasks.add(task);
-        System.out.println("____________________________________________________________\n" +
-                "Got it, I've added this task: \n" + task + "\n" +
-                "Now you have " + tasks.size() + " task(s) in the list.\n" +
-                "____________________________________________________________");
+    private void addDeadline(String description, String deadline) {
+        Task task = new Deadline(description, deadline);
+        this.add(task);
+    }
+
+    private void addEvent(String description, String begin, String end) {
+        Task task = new Event(description, begin, end);
+        this.add(task);
+    }
+
+    private void addTodo(String description) {
+        Task task = new Todo(description);
+        this.add(task);
     }
 
     private void delete(int id) {
@@ -58,6 +80,14 @@ public class Nikingoda {
         this.tasks.remove(id);
         System.out.println("____________________________________________________________\n" +
                 "Noted. I've removed this task: \n" + task + "\n" +
+                "Now you have " + tasks.size() + " task(s) in the list.\n" +
+                "____________________________________________________________");
+    }
+
+    private void add(Task task) {
+        this.tasks.add(task);
+        System.out.println("____________________________________________________________\n" +
+                "Got it, I've added this task: \n" + task + "\n" +
                 "Now you have " + tasks.size() + " task(s) in the list.\n" +
                 "____________________________________________________________");
     }
@@ -79,6 +109,18 @@ public class Nikingoda {
         System.out.println("____________________________________________________________");
     }
 
+    private void copy() {
+        for (Task task : tasks) {
+            if (task instanceof Event) {
+
+            } else if (task instanceof Deadline) {
+
+            } else {
+
+            }
+        }
+    }
+
     private void invalid() {
         System.out.println("____________________________________________________________");
         System.out.println("Invalid syntax! Please try again.");
@@ -89,6 +131,7 @@ public class Nikingoda {
         Scanner input = new Scanner(System.in);
         String command = input.nextLine();
         if (command.equals("bye")) {
+            this.copy();
             this.exit();
         } else if (command.equals("list")) {
             this.list();
@@ -114,12 +157,11 @@ public class Nikingoda {
             }
         } else if (command.length() > 5 && command.substring(0, 5).equals("todo ")) {
             try {
-                int typeID = 0;
                 String description = command.substring(5);
                 if (description.isBlank()) {
                     throw new nikingodaException("Description must not be blank!!!");
                 }
-                this.add(description, typeID, "", "", ""); //typeID = 0 for
+                this.addTodo(description);
             } catch (nikingodaException e) {
                 this.handleSyntaxError(e.getMessage());
             } catch (Exception e) {
@@ -138,8 +180,7 @@ public class Nikingoda {
                 if (deadline.isBlank()) {
                     throw new nikingodaException("Please indicate due date of deadline!!!");
                 }
-                int typeID = 1;
-                this.add(description, typeID, deadline, "", "");
+                this.addDeadline(description, deadline);
             } catch (nikingodaException e) {
                 this.handleSyntaxError(e.getMessage());
             } catch (Exception e) {
@@ -163,8 +204,7 @@ public class Nikingoda {
                 if (end.isBlank()) {
                     throw new nikingodaException("Please indicate end time!!!");
                 }
-                int typeID = 2;
-                this.add(description, typeID, "", begin, end);
+                this.addEvent(description, begin, end);
             } catch (nikingodaException e) {
                 this.handleSyntaxError(e.getMessage());
             } catch (Exception e) {
@@ -195,7 +235,7 @@ public class Nikingoda {
         }
     }
 
-    public void mark(int id) {
+    private void mark(int id) {
         tasks.get(id).mark();
         System.out.println("____________________________________________________________");
         System.out.println("Nice! I've marked this task as done:\n" +
@@ -203,7 +243,7 @@ public class Nikingoda {
         System.out.println("____________________________________________________________");
     }
 
-    public void unmark(int id) {
+    private void unmark(int id) {
         tasks.get(id).unmark();
         System.out.println("____________________________________________________________");
         System.out.println("OK, I've marked this task as not done yet:\n" +
@@ -211,7 +251,7 @@ public class Nikingoda {
         System.out.println("____________________________________________________________");
     }
 
-    public void exit() {
+    private void exit() {
         System.out.println("____________________________________________________________");
         System.out.println("\t" + "Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________");
