@@ -1,14 +1,12 @@
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-import java.nio.*;
 
 public class Nikingoda {
     private final ArrayList<Task> tasks = new ArrayList<>();
-    private final String home = System.getProperty("user.home");
+    private final String home = System.getProperty("user.dir");
 
 
     public static void main(String[] args) {
@@ -103,21 +101,26 @@ public class Nikingoda {
         System.out.println("____________________________________________________________");
     }
 
-    private void handleSyntaxError(String message) {
+    private void handleError(String message) {
         System.out.println("____________________________________________________________");
         System.out.println(message);
         System.out.println("____________________________________________________________");
     }
 
     private void copy() {
-        for (Task task : tasks) {
-            if (task instanceof Event) {
-
-            } else if (task instanceof Deadline) {
-
-            } else {
-
+        Path path = Paths.get(home, "data");
+        File dir = new File(path.toString());
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        File taskFile = new File(Paths.get(home, "data", "tasks.txt").toString());
+        try {
+            FileWriter writer = new FileWriter(taskFile);
+            for (Task task : tasks) {
+                writer.write(task.toFile() + System.lineSeparator());
             }
+        } catch (Exception e) {
+            this.handleError(e.getMessage());
         }
     }
 
@@ -163,7 +166,7 @@ public class Nikingoda {
                 }
                 this.addTodo(description);
             } catch (nikingodaException e) {
-                this.handleSyntaxError(e.getMessage());
+                this.handleError(e.getMessage());
             } catch (Exception e) {
                 this.invalid();
             } finally {
@@ -182,7 +185,7 @@ public class Nikingoda {
                 }
                 this.addDeadline(description, deadline);
             } catch (nikingodaException e) {
-                this.handleSyntaxError(e.getMessage());
+                this.handleError(e.getMessage());
             } catch (Exception e) {
                 this.invalid();
             } finally {
@@ -206,7 +209,7 @@ public class Nikingoda {
                 }
                 this.addEvent(description, begin, end);
             } catch (nikingodaException e) {
-                this.handleSyntaxError(e.getMessage());
+                this.handleError(e.getMessage());
             } catch (Exception e) {
                 this.invalid();
             } finally {
@@ -223,7 +226,7 @@ public class Nikingoda {
                 int id = Integer.parseInt(command.substring(7));
                 this.delete(id - 1);
             } catch (nikingodaException e) {
-                this.handleSyntaxError(e.getMessage());
+                this.handleError(e.getMessage());
             } catch (Exception e) {
                 this.invalid();
             } finally {
