@@ -12,7 +12,7 @@ public class Nikingoda {
     public static void main(String[] args) {
         Nikingoda nikingoda = new Nikingoda();
         nikingoda.greet();
-        nikingoda.initialTasks();
+        nikingoda.loadTasks();
         nikingoda.operate();
     }
 
@@ -23,7 +23,7 @@ public class Nikingoda {
         System.out.println("____________________________________________________________");
     }
 
-    private void initialTasks() {
+    private void loadTasks() {
         Path path = Paths.get(home, "data");
         File dir = new File(path.toString());
         if (!dir.exists()) {
@@ -107,18 +107,18 @@ public class Nikingoda {
         System.out.println("____________________________________________________________");
     }
 
-    private void copy() {
+    private void save() {
         Path path = Paths.get(home, "data");
         File dir = new File(path.toString());
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File taskFile = new File(Paths.get(home, "data", "tasks.txt").toString());
         try {
-            FileWriter writer = new FileWriter(taskFile);
+            FileWriter writer = new FileWriter(Paths.get(home, "data", "tasks.txt").toString());
             for (Task task : tasks) {
                 writer.write(task.toFile() + System.lineSeparator());
             }
+            writer.close();
         } catch (Exception e) {
             this.handleError(e.getMessage());
         }
@@ -134,7 +134,7 @@ public class Nikingoda {
         Scanner input = new Scanner(System.in);
         String command = input.nextLine();
         if (command.equals("bye")) {
-            this.copy();
+            this.save();
             this.exit();
         } else if (command.equals("list")) {
             this.list();
