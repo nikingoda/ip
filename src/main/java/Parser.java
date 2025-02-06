@@ -27,87 +27,93 @@ public class Parser {
             throw new nikingodaException("Please enter message");
         }
         String firstWord = commandSplit[0];
-        if (firstWord.equals("mark")) {
-            try {
-                int id = Integer.parseInt(command.substring(5));
-                ui.mark(tasks, id - 1);             //Id must be transform to 0-indexed
-            } catch (NumberFormatException e) {
-                throw new nikingodaException(" Id must be in form of number");
-            } catch (IndexOutOfBoundsException e) {
-                throw new nikingodaException(" There's no task with your id");
-            }
-        } else if (firstWord.equals("unmark")) {
-            try {
-                int id = Integer.parseInt(command.substring(5));
-                ui.unmark(tasks, id - 1);             //Id must be transform to 0-indexed
-            } catch (NumberFormatException e) {
-                throw new nikingodaException(" Id must be in form of number");
-            } catch (IndexOutOfBoundsException e) {
-                throw new nikingodaException(" There's no task with your id");
-            }
-        } else if (firstWord.equals("todo")) {
-            try {
-                String description = command.substring(5);
-                if (description.isBlank()) {
-                    throw new nikingodaException("Description must not be blank!!!");
+        switch (firstWord) {
+            case "mark" -> {
+                try {
+                    int id = Integer.parseInt(command.substring(5));
+                    ui.mark(tasks, id - 1);             //Id must be transform to 0-indexed
+                } catch (NumberFormatException e) {
+                    throw new nikingodaException(" Id must be in form of number");
+                } catch (IndexOutOfBoundsException e) {
+                    throw new nikingodaException(" There's no task with your id");
                 }
-                ui.add(tasks, new Todo(description));
-            } catch (Exception e) {
-                throw new nikingodaException(e.getMessage());
             }
-        } else if (firstWord.equals("event")) {
-            try {
-                String subCommand = command.substring(6);
-                String[] subCommandSplit = subCommand.split("/");
-                String description = subCommandSplit[0].trim();
-                String begin = subCommandSplit[1].trim();
-                String end = subCommandSplit[2].trim();
-                if (description.isBlank()) {
-                    throw new nikingodaException("Description must not be blank!!!");
+            case "unmark" -> {
+                try {
+                    int id = Integer.parseInt(command.substring(5));
+                    ui.unmark(tasks, id - 1);             //Id must be transform to 0-indexed
+                } catch (NumberFormatException e) {
+                    throw new nikingodaException(" Id must be in form of number");
+                } catch (IndexOutOfBoundsException e) {
+                    throw new nikingodaException(" There's no task with your id");
                 }
-                if (begin.isBlank()) {
-                    throw new nikingodaException("please add begin time");
-                }
-                if (end.isBlank()) {
-                    throw new nikingodaException("please add end time");
-                }
-                ui.add(tasks, new Event(description, begin, end));
-            } catch (IndexOutOfBoundsException e) {
-                throw new nikingodaException("Miss description/begin/end");
-            } catch (Exception e) {
-                throw new nikingodaException(e.getMessage());
             }
-        } else if (firstWord.equals("deadline")) {
-            try {
-                String subCommand = command.substring(9);
-                String[] subCommandSplit = subCommand.split("/");
-                String description = subCommandSplit[0].trim();
-                String deadline = subCommandSplit[1].trim();
-                if (description.isBlank()) {
-                    throw new nikingodaException("Description must not be blank!!!");
+            case "todo" -> {
+                try {
+                    String description = command.substring(5);
+                    if (description.isBlank()) {
+                        throw new nikingodaException("Description must not be blank!!!");
+                    }
+                    ui.add(tasks, new Todo(description));
+                } catch (Exception e) {
+                    throw new nikingodaException(e.getMessage());
                 }
-                if (deadline.isBlank()) {
-                    throw new nikingodaException("please add deadline");
+            }
+            case "event" -> {
+                try {
+                    String subCommand = command.substring(6);
+                    String[] subCommandSplit = subCommand.split("/");
+                    String description = subCommandSplit[0].trim();
+                    String begin = subCommandSplit[1].trim();
+                    String end = subCommandSplit[2].trim();
+                    if (description.isBlank()) {
+                        throw new nikingodaException("Description must not be blank!!!");
+                    }
+                    if (begin.isBlank()) {
+                        throw new nikingodaException("please add begin time");
+                    }
+                    if (end.isBlank()) {
+                        throw new nikingodaException("please add end time");
+                    }
+                    ui.add(tasks, new Event(description, begin, end));
+                } catch (IndexOutOfBoundsException e) {
+                    throw new nikingodaException("Miss description/begin/end");
+                } catch (Exception e) {
+                    throw new nikingodaException(e.getMessage());
                 }
-                ui.add(tasks, new Deadline(description, deadline));
-            } catch (IndexOutOfBoundsException e) {
-                throw new nikingodaException("Miss description/deadline");
-            } catch (Exception e) {
-                throw new nikingodaException(e.getMessage());
             }
-        } else if (firstWord.equals("delete")) {
-            try {
-                int id = Integer.parseInt(commandSplit[1]);
-                ui.delete(tasks, id);
-            } catch (NumberFormatException e) {
-                throw new nikingodaException("Task id must be integer");
-            } catch (IndexOutOfBoundsException e) {
-                throw new nikingodaException("Please indicate task id");
-            } catch (Exception e) {
-                throw new nikingodaException(e.getMessage());
+            case "deadline" -> {
+                try {
+                    String subCommand = command.substring(9);
+                    String[] subCommandSplit = subCommand.split("/");
+                    String description = subCommandSplit[0].trim();
+                    String deadline = subCommandSplit[1].trim();
+                    if (description.isBlank()) {
+                        throw new nikingodaException("Description must not be blank!!!");
+                    }
+                    if (deadline.isBlank()) {
+                        throw new nikingodaException("please add deadline");
+                    }
+                    ui.add(tasks, new Deadline(description, deadline));
+                } catch (IndexOutOfBoundsException e) {
+                    throw new nikingodaException("Miss description/deadline");
+                } catch (Exception e) {
+                    throw new nikingodaException(e.getMessage());
+                }
             }
-        } else {
-            throw new nikingodaException("I don't understand you");
+            case "delete" -> {
+                try {
+                    int id = Integer.parseInt(commandSplit[1]);
+                    ui.delete(tasks, id);
+                } catch (NumberFormatException e) {
+                    throw new nikingodaException("Task id must be integer");
+                } catch (IndexOutOfBoundsException e) {
+                    throw new nikingodaException("Please indicate task id");
+                } catch (Exception e) {
+                    throw new nikingodaException(e.getMessage());
+                }
+            }
+            default -> throw new nikingodaException("I don't understand you");
         }
     }
 }
