@@ -1,3 +1,5 @@
+package nikingoda.Task;
+
 public class Event extends Task {
     protected String begin;
     protected String end;

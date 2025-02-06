@@ -1,3 +1,10 @@
+package nikingoda;
+
+import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.Storage.Storage;
+import nikingoda.TaskList.TaskList;
+import nikingoda.Ui.Ui;
+
 public class Nikingoda {
     private final Ui ui;
     private final Storage storage;

@@ -1,3 +1,14 @@
+package nikingoda.Parser;
+
+import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.Storage.Storage;
+import nikingoda.Task.Deadline;
+import nikingoda.Task.Event;
+import nikingoda.Task.Task;
+import nikingoda.Task.Todo;
+import nikingoda.TaskList.TaskList;
+import nikingoda.Ui.Ui;
+
 public class Parser {
     public static Task parseTask(String line) {
         String[] lineSplitted = line.split("\\|");
@@ -106,7 +117,7 @@ public class Parser {
                     int id = Integer.parseInt(commandSplit[1]);
                     ui.delete(tasks, id);
                 } catch (NumberFormatException e) {
-                    throw new nikingodaException("Task id must be integer");
+                    throw new nikingodaException("nikingoda.Task.Task id must be integer");
                 } catch (IndexOutOfBoundsException e) {
                     throw new nikingodaException("Please indicate task id");
                 } catch (Exception e) {
