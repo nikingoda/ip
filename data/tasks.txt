@@ -1,2 +1,5 @@
 T|0|hi
 T|0|hello
+T|0|run
+D|0|wash dish|by monday
+E|0|teaching|4pm monday|6pm monday
