@@ -9,7 +9,7 @@ public class Event extends Task {
         this.end = end;
     }
     public Event(String description, String begin, String end, Boolean done) {
-        super(description);
+        super(description, done);
         this.begin = begin;
         this.end = end;
     }

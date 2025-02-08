@@ -6,6 +6,7 @@ import nikingoda.Storage.Storage;
 import nikingoda.Task.Task;
 import nikingoda.TaskList.TaskList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -23,6 +24,19 @@ public class Ui {
         String command = this.sc.nextLine();
         Parser.parseCommand(command, storage, taskList, this);
     }
+
+    public void find(TaskList taskList, String keyword) {
+        System.out.println("____________________________________________________________");
+        System.out.println("\t" + "Here are the matching tasks: \n");
+        ArrayList<Task> tmpTasks = taskList.taskContainsKeyword(keyword);
+        int id = 1;
+        for(Task task : tmpTasks) {
+            System.out.println(id + ". " + task.getDescription());
+            id++;
+        }
+        System.out.println("____________________________________________________________");
+    }
+
     public void greet() {
         System.out.println("____________________________________________________________");
         System.out.println("\t" + "Hello! I'm nikingoda\n" +

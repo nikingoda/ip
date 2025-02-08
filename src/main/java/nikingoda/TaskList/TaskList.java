@@ -10,6 +10,21 @@ public class TaskList {
         this.tasks = tasks;
     }
 
+    public ArrayList<Task> taskContainsKeyword(String keyword) {
+        keyword = keyword.trim();
+        ArrayList<Task> tmpTasks = new ArrayList<>();
+        for(Task task : tasks) {
+            String[] descriptionSplit = task.getDescription().split(" ");
+            for(String word : descriptionSplit) {
+                if(word.equals(keyword)) {
+                    tmpTasks.add(task);
+                    break;
+                }
+            }
+        }
+        return tmpTasks;
+    }
+
     public int getSize() {
         return this.tasks.size();
     }

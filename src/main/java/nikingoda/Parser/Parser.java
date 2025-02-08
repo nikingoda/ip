@@ -123,6 +123,18 @@ public class Parser {
                 } catch (Exception e) {
                     throw new nikingodaException(e.getMessage());
                 }
+            } case "find" -> {
+                try {
+                    StringBuilder keyWord = new StringBuilder(commandSplit[1]);
+                    for(int i = 2; i < commandSplit.length; i++) {
+                        keyWord.append(" ").append(commandSplit[i]);
+                    }
+                    ui.find(tasks, keyWord.toString());
+                } catch (IndexOutOfBoundsException e) {
+                    throw  new nikingodaException("Please add keyword");
+                } catch (Exception e) {
+                    throw new nikingodaException(e.getMessage());
+                }
             }
             default -> throw new nikingodaException("I don't understand you");
         }
