@@ -51,7 +51,7 @@ public class Parser {
             }
             case "unmark" -> {
                 try {
-                    int id = Integer.parseInt(command.substring(5));
+                    int id = Integer.parseInt(command.substring(7));
                     ui.unmark(tasks, id - 1);             //Id must be transform to 0-indexed
                 } catch (NumberFormatException e) {
                     throw new nikingodaException(" Id must be in form of number");
