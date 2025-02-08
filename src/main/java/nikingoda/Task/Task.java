@@ -10,13 +10,7 @@ public class Task {
     }
 
     public String toFile() {
-        int done = this.isDone ? 1 : 0;
-        return switch (this) {
-            case Todo todo -> "T|" + done + "|" + this.description;
-            case Deadline deadline -> "D|" + done + "|" + this.description + "|" + deadline.deadline;
-            case Event event -> "E|" + done + "|" + this.description + "|" + event.begin + "|" + event.end;
-            default -> "";
-        };
+        return this.description;
     }
 
 

@@ -19,4 +19,10 @@ public class Event extends Task {
         return "[E]" + "[" + this.getStatusIcon() + "] " + this.getDescription()
                 + " (from: " + this.begin + " to: " + this.end + ")";
     }
+
+    @Override
+    public String toFile() {
+        int done = this.isDone ? 1 : 0;
+        return "E|" + done + "|" + this.description + "|" + this.begin + "|" + this.end;
+    }
 }

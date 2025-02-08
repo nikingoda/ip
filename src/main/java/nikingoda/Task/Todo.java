@@ -13,4 +13,10 @@ public class Todo extends Task{
     public String toString() {
         return "[T]" + "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
+
+    @Override
+    public String toFile() {
+        int done = this.isDone ? 1 : 0;
+        return "T|" + done + "|" + this.description;
+    }
 }

@@ -18,4 +18,10 @@ public class Deadline extends Task{
                 + " (by: " + this.deadline + ")";
     }
 
+    @Override
+    public String toFile() {
+        int done = this.isDone ? 1 : 0;
+        return "D|" + done + "|" + this.description + "|" + this.deadline;
+    }
+
 }
