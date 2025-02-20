@@ -36,6 +36,7 @@ public class addEventCommand extends Command{
                 throw new nikingodaException("please add end time");
             }
             ui.add(tasks, new Event(description, begin, end));
+            storage.saveTask(tasks);
         } catch (IndexOutOfBoundsException e) {
             throw new nikingodaException("Invalid format.\nShould be: event <description> /from <begin_time> /to <end_time>");
         } catch (Exception e) {

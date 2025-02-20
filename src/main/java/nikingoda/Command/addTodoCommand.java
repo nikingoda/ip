@@ -25,6 +25,7 @@ public class addTodoCommand extends Command{
                 throw new nikingodaException("Description must not be blank!!!");
             }
             ui.add(tasks, new Todo(description));
+            storage.saveTask(tasks);
         } catch (Exception e) {
             throw new nikingodaException(e.getMessage());
         }

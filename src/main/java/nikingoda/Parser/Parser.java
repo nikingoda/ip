@@ -7,7 +7,7 @@ import nikingoda.Task.Event;
 import nikingoda.Task.Task;
 import nikingoda.Task.Todo;
 
-public class Parser {
+public abstract class Parser {
     public static Task parseTask(String line) {
         String[] lineSplitted = line.split("\\|");
         boolean isDone = lineSplitted[1].equals("1");

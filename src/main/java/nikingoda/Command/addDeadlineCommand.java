@@ -31,6 +31,7 @@ public class addDeadlineCommand extends Command{
                 throw new nikingodaException("please add deadline");
             }
             ui.add(tasks, new Deadline(description, deadline));
+            storage.saveTask(tasks);
         } catch (IndexOutOfBoundsException e) {
             throw new nikingodaException("Invalid format.\nShould be: event <description> /by <deadline>");
         } catch (Exception e) {

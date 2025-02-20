@@ -20,6 +20,7 @@ public class UnmarkCommand extends Command{
     public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
         try {
             ui.unmark(tasks, id - 1);             //Id must be transform to 0-indexed
+            storage.saveTask(tasks);
         } catch (IndexOutOfBoundsException e) {
             throw new nikingodaException(" There's no task with your id");
         }
