@@ -73,10 +73,11 @@ public class Parser {
             case "event" -> {
                 try {
                     String subCommand = command.substring(6);
-                    String[] subCommandSplit = subCommand.split("/");
+                    String[] subCommandSplit = subCommand.split(" /from ");
                     String description = subCommandSplit[0].trim();
-                    String begin = subCommandSplit[1].trim();
-                    String end = subCommandSplit[2].trim();
+                    String[] timeCommandSplit = subCommandSplit[1].split(" /to ");
+                    String begin = timeCommandSplit[0].trim();
+                    String end = timeCommandSplit[1].trim();
                     if (description.isBlank()) {
                         throw new nikingodaException("Description must not be blank!!!");
                     }
@@ -88,7 +89,7 @@ public class Parser {
                     }
                     ui.add(tasks, new Event(description, begin, end));
                 } catch (IndexOutOfBoundsException e) {
-                    throw new nikingodaException("Miss description/begin/end");
+                    throw new nikingodaException("Invalid format.\nShould be: event <description> /from <begin_time> /to <end_time>");
                 } catch (Exception e) {
                     throw new nikingodaException(e.getMessage());
                 }
@@ -96,7 +97,7 @@ public class Parser {
             case "deadline" -> {
                 try {
                     String subCommand = command.substring(9);
-                    String[] subCommandSplit = subCommand.split("/");
+                    String[] subCommandSplit = subCommand.split(" /by ");
                     String description = subCommandSplit[0].trim();
                     String deadline = subCommandSplit[1].trim();
                     if (description.isBlank()) {
@@ -107,7 +108,7 @@ public class Parser {
                     }
                     ui.add(tasks, new Deadline(description, deadline));
                 } catch (IndexOutOfBoundsException e) {
-                    throw new nikingodaException("Miss description/deadline");
+                    throw new nikingodaException("Invalid format.\nShould be: event <description> /by <deadline>");
                 } catch (Exception e) {
                     throw new nikingodaException(e.getMessage());
                 }

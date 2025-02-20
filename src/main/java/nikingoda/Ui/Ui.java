@@ -46,6 +46,7 @@ public class Ui {
 
     public void exit() {
         this.isExit = true;
+        sc.close();
         System.out.println("____________________________________________________________");
         System.out.println("\t" + "Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________");
