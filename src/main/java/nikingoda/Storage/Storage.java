@@ -33,7 +33,7 @@ public class Storage {
         return tasks;
     }
 
-    public void saveTask(TaskList tasks) {
+    public void saveTask(TaskList tasks) throws nikingodaException {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (Task task : tasks.getTasks()) {
@@ -41,7 +41,7 @@ public class Storage {
             }
             writer.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new nikingodaException("Cannot save task");
         }
     }
 }

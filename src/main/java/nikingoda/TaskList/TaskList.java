@@ -12,13 +12,16 @@ public class TaskList {
 
     public ArrayList<Task> taskContainsKeyword(String keyword) {
         keyword = keyword.trim();
+        String[] keyWords = keyword.split(" ");
         ArrayList<Task> tmpTasks = new ArrayList<>();
         for(Task task : tasks) {
             String[] descriptionSplit = task.getDescription().split(" ");
             for(String word : descriptionSplit) {
-                if(word.equals(keyword)) {
-                    tmpTasks.add(task);
-                    break;
+                for(String kword : keyWords) {
+                    if(word.equals(kword) && !tmpTasks.contains(task)) {
+                        tmpTasks.add(task);
+                        break;
+                    }
                 }
             }
         }

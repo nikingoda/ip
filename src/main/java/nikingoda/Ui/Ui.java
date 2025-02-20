@@ -1,8 +1,6 @@
 package nikingoda.Ui;
 
 import nikingoda.NikingodaException.nikingodaException;
-import nikingoda.Parser.Parser;
-import nikingoda.Storage.Storage;
 import nikingoda.Task.Task;
 import nikingoda.TaskList.TaskList;
 
@@ -11,18 +9,13 @@ import java.util.Scanner;
 
 public class Ui {
     private final Scanner sc;
-    private boolean isExit = false;
     public Ui() {
         this.sc = new Scanner(System.in);
     }
 
-    public boolean isExit() {
-        return isExit;
-    }
 
-    public void readCommand(Storage storage, TaskList taskList) throws nikingodaException {
-        String command = this.sc.nextLine();
-        Parser.parseCommand(command, storage, taskList, this);
+    public String read() throws nikingodaException {
+        return this.sc.nextLine();
     }
 
     public void find(TaskList taskList, String keyword) {
@@ -45,7 +38,6 @@ public class Ui {
     }
 
     public void exit() {
-        this.isExit = true;
         sc.close();
         System.out.println("____________________________________________________________");
         System.out.println("\t" + "Bye. Hope to see you again soon!");
