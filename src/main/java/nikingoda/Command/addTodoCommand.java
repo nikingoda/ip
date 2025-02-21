@@ -11,7 +11,7 @@ public class addTodoCommand extends Command{
 
     /**
      * command to add TodoTask
-     * @param command description
+     * @param command command
      */
     public addTodoCommand(String command) {
         this.command = command;
@@ -20,14 +20,14 @@ public class addTodoCommand extends Command{
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
         try {
-            String description = command.substring(5);
+            String description = command.substring(5).trim();
             if (description.isBlank()) {
                 throw new nikingodaException("Description must not be blank!!!");
             }
             ui.add(tasks, new Todo(description));
             storage.saveTask(tasks);
         } catch (Exception e) {
-            throw new nikingodaException(e.getMessage());
+            throw new nikingodaException("Invalid command. \nShould be: todo <description>");
         }
     }
 }

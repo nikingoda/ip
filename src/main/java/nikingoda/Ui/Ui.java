@@ -81,6 +81,12 @@ public class Ui {
                 "____________________________________________________________");
     }
 
+    public void updateTask(Task task) {
+        System.out.println("____________________________________________________________\n" +
+                "Noted. I've updated this task: \n" + task + "\n" +
+                "____________________________________________________________");
+    }
+
     public void showError(nikingodaException e) {
         System.out.println(e.getMessage());
     }

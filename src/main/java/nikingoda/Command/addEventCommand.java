@@ -6,11 +6,14 @@ import nikingoda.Task.Event;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
-public class addEventCommand extends Command{
+import java.time.format.DateTimeParseException;
+
+public class addEventCommand extends Command {
     private final String command;
 
     /**
      * command to add EventTask
+     *
      * @param command description
      */
     public addEventCommand(String command) {
@@ -37,10 +40,10 @@ public class addEventCommand extends Command{
             }
             ui.add(tasks, new Event(description, begin, end));
             storage.saveTask(tasks);
-        } catch (IndexOutOfBoundsException e) {
-            throw new nikingodaException("Invalid format.\nShould be: event <description> /from <begin_time> /to <end_time>");
+        } catch (DateTimeParseException e) {
+            throw new nikingodaException("Invalid format, begin time or end time should be in form: HHmm dd/mm/yyyy");
         } catch (Exception e) {
-            throw new nikingodaException(e.getMessage());
+            throw new nikingodaException("Invalid format.\nShould be: event <description> /from <begin_time> /to <end_time>");
         }
     }
 }

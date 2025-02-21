@@ -37,6 +37,14 @@ public class Deadline extends Task{
         return this.deadline.format(inputForm);
     }
 
+    /**
+     * method to update deadline
+     * @param newDeadline new deadline
+     */
+    public void updateDeadline(String newDeadline) {
+        this.deadline = LocalDateTime.parse(newDeadline, inputForm);
+    }
+
     @Override
     public String toString() {
         return "[D]" + "[" + this.getStatusIcon() + "] " + this.getDescription()

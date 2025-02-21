@@ -6,6 +6,8 @@ import nikingoda.Task.Deadline;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
+import java.time.format.DateTimeParseException;
+
 public class addDeadlineCommand extends Command{
     private final String command;
 
@@ -32,10 +34,10 @@ public class addDeadlineCommand extends Command{
             }
             ui.add(tasks, new Deadline(description, deadline));
             storage.saveTask(tasks);
-        } catch (IndexOutOfBoundsException e) {
-            throw new nikingodaException("Invalid format.\nShould be: event <description> /by <deadline>");
+        } catch (DateTimeParseException e) {
+            throw new nikingodaException("Invalid format, deadline should be in form: HHmm dd/mm/yyyy");
         } catch (Exception e) {
-            throw new nikingodaException(e.getMessage());
+            throw new nikingodaException("Invalid format.\nShould be: event <description> /by <deadline>");
         }
     }
 }

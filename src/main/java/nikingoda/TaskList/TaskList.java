@@ -1,5 +1,8 @@
 package nikingoda.TaskList;
 
+import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.Task.Deadline;
+import nikingoda.Task.Event;
 import nikingoda.Task.Task;
 
 import java.util.ArrayList;
@@ -63,5 +66,60 @@ public class TaskList {
             System.out.println(i + ". " + task);
             i++;
         }
+    }
+
+    /**
+     * update description of task with id
+     * @param id id of task
+     * @param description new description
+     */
+    public Task updateTaskDescription(int id, String description) {
+        this.tasks.get(id).updateDescription(description);
+        return tasks.get(id);
+    }
+
+    /**
+     * update deadline for DeadlineTask
+     * @param id id of task
+     * @param deadline new deadline
+     * @throws nikingodaException handle exception
+     */
+    public Task updateTaskDeadline(int id, String deadline) throws nikingodaException {
+        Task task = this.tasks.get(id);
+        if(!(task instanceof Deadline)) {
+            throw new nikingodaException("You can only update deadline of Deadline task");
+        }
+        ((Deadline) task).updateDeadline(deadline);
+        return task;
+    }
+
+    /**
+     * update begin_time of Event task
+     * @param id id of task
+     * @param begin new begin_time
+     * @throws nikingodaException handle error
+     */
+    public Task updateTaskBegin(int id, String begin) throws nikingodaException {
+        Task task = this.tasks.get(id);
+        if(!(task instanceof Event)) {
+            throw new nikingodaException("You can only update begin_time of Event task");
+        }
+        ((Event) task).updateBegin(begin);
+        return task;
+    }
+
+    /**
+     * update end_time of Event task
+     * @param id id of task
+     * @param end new end_time
+     * @throws nikingodaException handle error
+     */
+    public Task updateTaskEnd(int id, String end) throws nikingodaException {
+        Task task = this.tasks.get(id);
+        if(!(task instanceof Event)) {
+            throw new nikingodaException("You can only update end_time of Event task");
+        }
+        ((Event) task).updateEnd(end);
+        return task;
     }
 }
