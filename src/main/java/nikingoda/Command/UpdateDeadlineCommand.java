@@ -5,6 +5,8 @@ import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
+import java.time.format.DateTimeParseException;
+
 public class UpdateDeadlineCommand extends UpdateCommand {
     protected final String newDeadline;
     public UpdateDeadlineCommand(int id, String newDeadline) {
@@ -14,7 +16,11 @@ public class UpdateDeadlineCommand extends UpdateCommand {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
-        int id = this.getId() - 1; //change from 1-indexed to 0-indexed
-        ui.updateTask(tasks.updateTaskDeadline(id, newDeadline));
+        try {
+            int id = this.getId() - 1; //change from 1-indexed to 0-indexed
+            ui.updateTask(tasks.updateTaskDeadline(id, newDeadline));
+        } catch (DateTimeParseException e) {
+            throw new nikingodaException(" Deadline should be in form: 'HHmm dd/mm/yyyy'");
+        }
     }
 }

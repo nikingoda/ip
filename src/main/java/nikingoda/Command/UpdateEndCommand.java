@@ -5,6 +5,8 @@ import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
+import java.time.format.DateTimeParseException;
+
 public class UpdateEndCommand extends UpdateCommand{
     protected final String newEnd;
 
@@ -15,7 +17,11 @@ public class UpdateEndCommand extends UpdateCommand{
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
-        int id = this.getId() - 1; //change form 1-indexed to 0-indexed
-        ui.updateTask(tasks.updateTaskEnd(id, newEnd));
+        try {
+            int id = this.getId() - 1; //change form 1-indexed to 0-indexed
+            ui.updateTask(tasks.updateTaskEnd(id, newEnd));
+        } catch (DateTimeParseException e) {
+            throw new nikingodaException(" End time should be in form: 'HHmm dd/mm/yyyy'");
+        }
     }
 }

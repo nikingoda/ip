@@ -15,6 +15,9 @@ public class UpdateDescriptionCommand extends UpdateCommand {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
         int id = this.getId() - 1; //change from 1-indexed to 0-indexed
+        if(newDescription.trim().isBlank()) {
+            throw new nikingodaException("New description cannot be blank");
+        }
         ui.updateTask(tasks.updateTaskDescription(id, newDescription.trim()));
     }
 }

@@ -5,6 +5,8 @@ import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
+import java.time.format.DateTimeParseException;
+
 public class UpdateBeginCommand extends UpdateCommand{
     protected final String newBegin;
     public UpdateBeginCommand(int id, String newBegin) {
@@ -14,7 +16,11 @@ public class UpdateBeginCommand extends UpdateCommand{
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
-        int id = this.getId() - 1; //change from 1-indexed to 0-indexed
-        ui.updateTask(tasks.updateTaskBegin(id, newBegin));
+        try {
+            int id = this.getId() - 1; //change from 1-indexed to 0-indexed
+            ui.updateTask(tasks.updateTaskBegin(id, newBegin));
+        } catch (DateTimeParseException e) {
+            throw new nikingodaException("Begin time should be in form: 'HHmm dd/mm/yyyy'");
+        }
     }
 }
