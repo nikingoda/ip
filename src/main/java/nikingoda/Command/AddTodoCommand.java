@@ -2,11 +2,12 @@ package nikingoda.Command;
 
 import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Storage.Storage;
+import nikingoda.Task.Task;
 import nikingoda.Task.Todo;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
-public class AddTodoCommand extends Command {
+public class AddTodoCommand extends AddCommand {
     private final String command;
 
     /**
@@ -25,7 +26,9 @@ public class AddTodoCommand extends Command {
             if (description.isBlank()) {
                 throw new NikingodaException("Description must not be blank!!!");
             }
-            ui.add(tasks, new Todo(description));
+            Task task = new Todo(description);
+            tasks.add(task);
+            this.setResponse("Got it, I've added this task: \n" + task);
             storage.saveTask(tasks);
         } catch (Exception e) {
             throw new NikingodaException("Invalid command. \nShould be: todo <description>");

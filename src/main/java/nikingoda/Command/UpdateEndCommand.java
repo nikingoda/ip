@@ -32,7 +32,9 @@ public class UpdateEndCommand extends UpdateCommand {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         try {
             int id = this.getId() - 1; //change form 1-indexed to 0-indexed
-            ui.updateTask(tasks.updateTaskEnd(id, newEnd));
+//            ui.updateTask(tasks.updateTaskEnd(id, newEnd));
+            String response = "Noted. I've updated this task: \n" + tasks.updateTaskEnd(id, newEnd);
+            this.setResponse(response);
         } catch (DateTimeParseException e) {
             throw new NikingodaException(" End time should be in form: 'HHmm dd/mm/yyyy'");
         }

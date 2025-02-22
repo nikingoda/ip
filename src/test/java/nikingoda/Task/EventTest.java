@@ -1,26 +1,28 @@
 package nikingoda.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import nikingoda.NikingodaException.NikingodaException;
 import org.junit.jupiter.api.Test;
 
 public class EventTest {
 
     @Test
-    public void testToString_NotDone() {
+    public void testToString_NotDone() throws NikingodaException {
         Event event = new Event("Meeting", "1200 15/10/2023", "1400 15/10/2023");
         String expected = "[E][ ] Meeting (from: 12:00 PM, Oct 15 2023 to: 2:00 PM, Oct 15 2023)";
         assertEquals(expected, event.toString());
     }
 
     @Test
-    public void testToFile_NotDone() {
+    public void testToFile_NotDone() throws  NikingodaException {
         Event event = new Event("Meeting", "1200 15/10/2023", "1400 15/10/2023");
         String expected = "E|0|Meeting|1200 15/10/2023|1400 15/10/2023";
         assertEquals(expected, event.toFile());
     }
 
     @Test
-    public void testUpdateBegin() {
+    public void testUpdateBegin() throws NikingodaException {
         Event event = new Event("Meeting", "1200 15/10/2023", "1400 15/10/2023");
         event.updateBegin("1300 15/10/2023");
         // "1300 15/10/2023" formats to "1:00 PM, Oct 15 2023"
@@ -29,7 +31,7 @@ public class EventTest {
     }
 
     @Test
-    public void testUpdateEnd() {
+    public void testUpdateEnd() throws NikingodaException {
         Event event = new Event("Meeting", "1200 15/10/2023", "1400 15/10/2023");
         event.updateEnd("1500 15/10/2023");
         // "1500 15/10/2023" formats to "3:00 PM, Oct 15 2023"

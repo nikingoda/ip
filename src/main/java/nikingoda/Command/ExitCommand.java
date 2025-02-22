@@ -13,7 +13,7 @@ public class ExitCommand extends Command{
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         storage.saveTask(tasks);
-        ui.exit();
+        this.setResponse("Bye. Hope to see you again soon!");
     }
 
     /**

@@ -33,7 +33,9 @@ public class UpdateDeadlineCommand extends UpdateCommand {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         try {
             int id = this.getId() - 1; //change from 1-indexed to 0-indexed
-            ui.updateTask(tasks.updateTaskDeadline(id, newDeadline));
+//            ui.updateTask(tasks.updateTaskDeadline(id, newDeadline));
+            String response = "Noted. I've updated this task: \n" + tasks.updateTaskDeadline(id, newDeadline);
+            this.setResponse(response);
         } catch (DateTimeParseException e) {
             throw new NikingodaException(" Deadline should be in form: 'HHmm dd/mm/yyyy'");
         }

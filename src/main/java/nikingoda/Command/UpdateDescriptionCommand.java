@@ -33,6 +33,8 @@ public class UpdateDescriptionCommand extends UpdateCommand {
         if (newDescription.trim().isBlank()) {
             throw new NikingodaException("New description cannot be blank");
         }
-        ui.updateTask(tasks.updateTaskDescription(id, newDescription.trim()));
+//        ui.updateTask(tasks.updateTaskDescription(id, newDescription.trim()));
+        String response = "Noted. I've updated this task: \n" + tasks.updateTaskDescription(id, newDescription);
+        this.setResponse(response);
     }
 }

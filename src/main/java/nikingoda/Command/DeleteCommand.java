@@ -2,6 +2,7 @@ package nikingoda.Command;
 
 import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Storage.Storage;
+import nikingoda.Task.Task;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
@@ -20,7 +21,8 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         try {
-            ui.delete(tasks, id - 1);           //Id must be transform to 0-indexed
+            Task task = tasks.delete(id - 1);           //Id must be transform to 0-indexed
+            this.setResponse("Noted. I've removed this task: \n" + task);
             storage.saveTask(tasks);
         } catch (NumberFormatException e) {
             throw new NikingodaException("Task id must be integer");
@@ -30,4 +32,5 @@ public class DeleteCommand extends Command {
             throw new NikingodaException(e.getMessage());
         }
     }
+
 }

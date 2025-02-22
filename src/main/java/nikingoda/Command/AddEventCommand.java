@@ -3,12 +3,13 @@ package nikingoda.Command;
 import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Storage.Storage;
 import nikingoda.Task.Event;
+import nikingoda.Task.Task;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
 import java.time.format.DateTimeParseException;
 
-public class AddEventCommand extends Command {
+public class AddEventCommand extends AddCommand {
     private final String command;
 
     /**
@@ -38,8 +39,12 @@ public class AddEventCommand extends Command {
             if (end.isBlank()) {
                 throw new NikingodaException("please add end time");
             }
-            ui.add(tasks, new Event(description, begin, end));
+            Task task = new Event(description, begin, end);
+            tasks.add(task);
+            this.setResponse("Got it, I've added this task: \n" + task);
             storage.saveTask(tasks);
+        } catch (NikingodaException e) {
+            throw e;
         } catch (DateTimeParseException e) {
             throw new NikingodaException("Invalid format, begin time or end time should be in form: HHmm dd/mm/yyyy");
         } catch (Exception e) {

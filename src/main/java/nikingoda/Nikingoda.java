@@ -42,4 +42,18 @@ public class Nikingoda {
             }
         }
     }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(taskList, ui, storage);
+            return c.getString();
+        } catch (NikingodaException e) {
+            return e.getMessage();
+        }
+    }
 }
+

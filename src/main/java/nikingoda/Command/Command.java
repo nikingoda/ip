@@ -6,6 +6,7 @@ import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
 public abstract class Command {
+    private String response;
     public static Command findCommand(String command) throws NikingodaException {
         command = command.trim();
         command = command.toLowerCase();
@@ -88,38 +89,43 @@ public abstract class Command {
                         throw new NikingodaException("To update deadline, use: update <task_id> /by <new_deadline>");
                     }
                 }
-                updateCommandSplit = command.split(" /begin ");
+                updateCommandSplit = command.split(" /from ");
                 if (updateCommandSplit.length > 1) {
                     try {
                         int id = Integer.parseInt(commandSplit[1].trim());
                         String newBegin = updateCommandSplit[1];
                         return new UpdateBeginCommand(id, newBegin);
                     } catch (Exception e) {
-                        throw new NikingodaException("To update begin_time, use: update <task_id> /begin <new_begin_time>");
+                        throw new NikingodaException("To update begin_time, use: update <task_id> /from <new_begin_time>");
                     }
                 }
-                updateCommandSplit = command.split(" /end ");
+                updateCommandSplit = command.split(" /to ");
                 if (updateCommandSplit.length > 1) {
                     try {
                         int id = Integer.parseInt(commandSplit[1].trim());
                         String newEnd = updateCommandSplit[1];
                         return new UpdateEndCommand(id, newEnd);
                     } catch (Exception e) {
-                        throw new NikingodaException("To update end_time, use: update <task_id> /end <new_end_time>");
+                        throw new NikingodaException("To update end_time, use: update <task_id> /to <new_end_time>");
                     }
                 }
+                throw new NikingodaException("""
+                        To update, use:\s
+                        'update <task_id> /by <new_deadline>' to update deadline
+                        'update <task_id> /description <new_description>' to update description
+                        'update <task_id> /from <new_begin_time>' to update begin_time
+                        'update <task_id> /to <new_end_time>' to update end_time""");
             } catch (Exception e) {
                 throw new NikingodaException("""
                         To update, use:\s
                         'update <task_id> /by <new_deadline>' to update deadline
                         'update <task_id> /description <new_description>' to update description
-                        'update <task_id> /begin <new_begin_time>' to update begin_time
-                        'update <task_id> /end <new_end_time>' to update end_time""");
+                        'update <task_id> /from <new_begin_time>' to update begin_time
+                        'update <task_id> /to <new_end_time>' to update end_time""");
             }
         }
         default -> throw new NikingodaException("I don't understand you");
         }
-        return null;
     }
 
     /**
@@ -137,5 +143,16 @@ public abstract class Command {
      */
     public boolean isExit() {
         return false;
+    }
+
+    public String getString() throws NikingodaException {
+        if(this.response == null) {
+            throw new NikingodaException("Command had not been executed");
+        }
+        return this.response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
     }
 }

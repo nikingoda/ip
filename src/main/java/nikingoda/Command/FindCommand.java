@@ -2,8 +2,11 @@ package nikingoda.Command;
 
 import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Storage.Storage;
+import nikingoda.Task.Task;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
+
+import java.util.ArrayList;
 
 public class FindCommand extends Command {
     private final String keyword;
@@ -20,7 +23,14 @@ public class FindCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         try {
-            ui.find(tasks, keyword);
+            ArrayList<Task> tmpTasks = tasks.taskContainsKeyword(keyword);
+            StringBuilder response = new StringBuilder("Here are the matching tasks: \n");
+            int id = 1;
+            for (Task task : tmpTasks) {
+                response.append(id).append(". ").append(task.getDescription()).append("\n");
+                id++;
+            }
+            this.setResponse(response.toString());
         } catch (Exception e) {
             throw new NikingodaException(e.getMessage());
         }

@@ -33,7 +33,9 @@ public class UpdateBeginCommand extends UpdateCommand {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         try {
             int id = this.getId() - 1; //change from 1-indexed to 0-indexed
-            ui.updateTask(tasks.updateTaskBegin(id, newBegin));
+//            ui.updateTask(tasks.updateTaskBegin(id, newBegin));
+            String response = "Noted. I've updated this task: \n" + tasks.updateTaskBegin(id, newBegin);
+            this.setResponse(response);
         } catch (DateTimeParseException e) {
             throw new NikingodaException("Begin time should be in form: 'HHmm dd/mm/yyyy'");
         }

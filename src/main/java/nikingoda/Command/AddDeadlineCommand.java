@@ -3,12 +3,13 @@ package nikingoda.Command;
 import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Storage.Storage;
 import nikingoda.Task.Deadline;
+import nikingoda.Task.Task;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
 import java.time.format.DateTimeParseException;
 
-public class AddDeadlineCommand extends Command {
+public class AddDeadlineCommand extends AddCommand {
     private final String command;
 
     /**
@@ -33,12 +34,14 @@ public class AddDeadlineCommand extends Command {
             if (deadline.isBlank()) {
                 throw new NikingodaException("please add deadline");
             }
-            ui.add(tasks, new Deadline(description, deadline));
+            Task task = new Deadline(description, deadline);
+            tasks.add(task);
+            this.setResponse("Got it, I've added this task: \n" + task);
             storage.saveTask(tasks);
         } catch (DateTimeParseException e) {
             throw new NikingodaException("Invalid format, deadline should be in form: HHmm dd/mm/yyyy");
         } catch (Exception e) {
-            throw new NikingodaException("Invalid format.\nShould be: event <description> /by <deadline>");
+            throw new NikingodaException("Invalid format.\nShould be: deadline <description> /by <deadline>");
         }
     }
 }

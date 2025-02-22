@@ -1,5 +1,7 @@
 package nikingoda.Task;
 
+import nikingoda.NikingodaException.NikingodaException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -20,10 +22,15 @@ public class Event extends Task {
      * @param begin       begin_time
      * @param end         end_time
      */
-    public Event(String description, String begin, String end) {
+    public Event(String description, String begin, String end) throws NikingodaException {
         super(description);
-        this.begin = LocalDateTime.parse(begin, inputForm);
-        this.end = LocalDateTime.parse(end, inputForm);
+        LocalDateTime tmpBegin = LocalDateTime.parse(begin, inputForm);
+        LocalDateTime tmpEnd = LocalDateTime.parse(end, inputForm);
+        if(tmpEnd.isBefore(tmpBegin)) {
+            throw new NikingodaException("End time must be after begin time");
+        }
+        this.begin = tmpBegin;
+        this.end = tmpEnd;
     }
 
     /**
@@ -67,8 +74,12 @@ public class Event extends Task {
      *
      * @param newBegin new begin_time
      */
-    public void updateBegin(String newBegin) {
-        this.begin = LocalDateTime.parse(newBegin, inputForm);
+    public void updateBegin(String newBegin) throws NikingodaException {
+        LocalDateTime tmpBegin = LocalDateTime.parse(newBegin, inputForm);
+        if(this.end.isBefore(tmpBegin)) {
+            throw new NikingodaException("End time must be after begin time");
+        }
+        this.begin = tmpBegin;
     }
 
     /**
@@ -76,8 +87,12 @@ public class Event extends Task {
      *
      * @param newEnd new end_time
      */
-    public void updateEnd(String newEnd) {
-        this.end = LocalDateTime.parse(newEnd, inputForm);
+    public void updateEnd(String newEnd) throws NikingodaException {
+        LocalDateTime tmpEnd = LocalDateTime.parse(newEnd, inputForm);
+        if(this.begin.isAfter(tmpEnd)) {
+            throw new NikingodaException("End time must be after begin time");
+        }
+        this.end = tmpEnd;
     }
 
     @Override
