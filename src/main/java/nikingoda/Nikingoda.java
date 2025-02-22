@@ -31,7 +31,7 @@ public class Nikingoda {
     public void run() {
         ui.greet();
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             try {
                 String command = ui.read();
                 Command c = Parser.parse(command);

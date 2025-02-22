@@ -6,8 +6,9 @@ public abstract class Task {
 
     /**
      * constructor for task with description and status isDone (for loading old tasks from storage)
+     *
      * @param description description
-     * @param isDone status whether it is done
+     * @param isDone      status whether it is done
      */
     public Task(String description, Boolean isDone) {
         this.description = description;
@@ -33,6 +34,7 @@ public abstract class Task {
 
     /**
      * constructor with isDone set to false in default (for new task created)
+     *
      * @param description description
      */
     public Task(String description) {

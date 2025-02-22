@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Ui {
     private final Scanner sc;
+
     public Ui() {
         this.sc = new Scanner(System.in);
     }
@@ -23,7 +24,7 @@ public class Ui {
         System.out.println("\t" + "Here are the matching tasks: \n");
         ArrayList<Task> tmpTasks = taskList.taskContainsKeyword(keyword);
         int id = 1;
-        for(Task task : tmpTasks) {
+        for (Task task : tmpTasks) {
             System.out.println(id + ". " + task.getDescription());
             id++;
         }

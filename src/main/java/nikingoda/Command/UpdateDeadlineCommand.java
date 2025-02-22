@@ -9,6 +9,7 @@ import java.time.format.DateTimeParseException;
 
 public class UpdateDeadlineCommand extends UpdateCommand {
     protected final String newDeadline;
+
     public UpdateDeadlineCommand(int id, String newDeadline) {
         super(id);
         this.newDeadline = newDeadline;

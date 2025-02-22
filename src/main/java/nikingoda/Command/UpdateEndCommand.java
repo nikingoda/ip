@@ -7,7 +7,7 @@ import nikingoda.Ui.Ui;
 
 import java.time.format.DateTimeParseException;
 
-public class UpdateEndCommand extends UpdateCommand{
+public class UpdateEndCommand extends UpdateCommand {
     protected final String newEnd;
 
     public UpdateEndCommand(int id, String newEnd) {

@@ -15,9 +15,10 @@ public class Event extends Task {
 
     /**
      * constructor for event
+     *
      * @param description description
-     * @param begin begin_time
-     * @param end end_time
+     * @param begin       begin_time
+     * @param end         end_time
      */
     public Event(String description, String begin, String end) {
         super(description);
@@ -27,10 +28,11 @@ public class Event extends Task {
 
     /**
      * constructor for event
+     *
      * @param description description
-     * @param begin begin_time
-     * @param end end_time
-     * @param done status whether it is done
+     * @param begin       begin_time
+     * @param end         end_time
+     * @param done        status whether it is done
      */
     public Event(String description, String begin, String end, Boolean done) {
         super(description, done);
@@ -44,6 +46,7 @@ public class Event extends Task {
     private String inputBegin() {
         return this.begin.format(inputForm);
     }
+
     private String outputBegin() {
         return this.begin.format(outputForm);
     }
@@ -61,6 +64,7 @@ public class Event extends Task {
 
     /**
      * function to update begin_time
+     *
      * @param newBegin new begin_time
      */
     public void updateBegin(String newBegin) {
@@ -69,6 +73,7 @@ public class Event extends Task {
 
     /**
      * function to update end_time
+     *
      * @param newEnd new end_time
      */
     public void updateEnd(String newEnd) {

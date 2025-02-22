@@ -7,8 +7,9 @@ import nikingoda.Ui.Ui;
 
 import java.time.format.DateTimeParseException;
 
-public class UpdateBeginCommand extends UpdateCommand{
+public class UpdateBeginCommand extends UpdateCommand {
     protected final String newBegin;
+
     public UpdateBeginCommand(int id, String newBegin) {
         super(id);
         this.newBegin = newBegin;

@@ -3,7 +3,7 @@ package nikingoda.Task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
     protected LocalDateTime deadline;
     /**
      * Custom DateTimeFormatter for input and output
@@ -13,6 +13,7 @@ public class Deadline extends Task{
 
     /**
      * Constructs a Deadline task with the given description and deadline.
+     *
      * @param description Task description.
      * @param deadline    Deadline in the format HHmm d/M/yyyy.
      */
@@ -39,6 +40,7 @@ public class Deadline extends Task{
 
     /**
      * method to update deadline
+     *
      * @param newDeadline new deadline
      */
     public void updateDeadline(String newDeadline) {

@@ -6,11 +6,12 @@ import nikingoda.Task.Todo;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
-public class AddTodoCommand extends Command{
+public class AddTodoCommand extends Command {
     private final String command;
 
     /**
      * command to add TodoTask
+     *
      * @param command command
      */
     public AddTodoCommand(String command) {

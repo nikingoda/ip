@@ -16,6 +16,10 @@ public class ExitCommand extends Command{
         ui.exit();
     }
 
+    /**
+     * isExit() of exit command need to return true as we exit the program
+     * @return true as this is exit command
+     */
     @Override
     public boolean isExit() {
         return true;

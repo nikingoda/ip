@@ -69,7 +69,7 @@ public abstract class Command {
         case "update" -> {
             try {
                 String[] updateCommandSplit = command.split(" /description ");
-                if(updateCommandSplit.length > 1) {
+                if (updateCommandSplit.length > 1) {
                     try {
                         int id = Integer.parseInt(commandSplit[1].trim());
                         String newDescription = updateCommandSplit[1];
@@ -79,7 +79,7 @@ public abstract class Command {
                     }
                 }
                 updateCommandSplit = command.split(" /by ");
-                if(updateCommandSplit.length > 1) {
+                if (updateCommandSplit.length > 1) {
                     try {
                         int id = Integer.parseInt(commandSplit[1].trim());
                         String newDeadline = updateCommandSplit[1];
@@ -89,7 +89,7 @@ public abstract class Command {
                     }
                 }
                 updateCommandSplit = command.split(" /begin ");
-                if(updateCommandSplit.length > 1) {
+                if (updateCommandSplit.length > 1) {
                     try {
                         int id = Integer.parseInt(commandSplit[1].trim());
                         String newBegin = updateCommandSplit[1];
@@ -99,7 +99,7 @@ public abstract class Command {
                     }
                 }
                 updateCommandSplit = command.split(" /end ");
-                if(updateCommandSplit.length > 1) {
+                if (updateCommandSplit.length > 1) {
                     try {
                         int id = Integer.parseInt(commandSplit[1].trim());
                         String newEnd = updateCommandSplit[1];
@@ -130,6 +130,11 @@ public abstract class Command {
      */
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException;
 
+    /**
+     * except exit command, isExit() return false as we continue use chatbot
+     *
+     * @return false
+     */
     public boolean isExit() {
         return false;
     }

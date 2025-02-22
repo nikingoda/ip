@@ -5,11 +5,12 @@ import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
-public class MarkCommand extends Command  {
+public class MarkCommand extends Command {
     private final int id;
 
     /**
      * command to mark task with id
+     *
      * @param id id
      */
     public MarkCommand(int id) {

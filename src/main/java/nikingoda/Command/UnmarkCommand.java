@@ -5,11 +5,12 @@ import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
-public class UnmarkCommand extends Command{
+public class UnmarkCommand extends Command {
     private final int id;
 
     /**
      * command to unmark task with id
+     *
      * @param id id
      */
     public UnmarkCommand(int id) {

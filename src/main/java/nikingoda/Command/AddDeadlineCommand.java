@@ -8,11 +8,12 @@ import nikingoda.Ui.Ui;
 
 import java.time.format.DateTimeParseException;
 
-public class AddDeadlineCommand extends Command{
+public class AddDeadlineCommand extends Command {
     private final String command;
 
     /**
      * command to add DeadlineTask
+     *
      * @param command command
      */
     public AddDeadlineCommand(String command) {

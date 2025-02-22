@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
+
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
@@ -17,11 +18,11 @@ public class TaskList {
         keyword = keyword.trim();
         String[] keyWords = keyword.split(" ");
         ArrayList<Task> tmpTasks = new ArrayList<>();
-        for(Task task : tasks) {
+        for (Task task : tasks) {
             String[] descriptionSplit = task.getDescription().split(" ");
-            for(String word : descriptionSplit) {
-                for(String kword : keyWords) {
-                    if(word.equals(kword) && !tmpTasks.contains(task)) {
+            for (String word : descriptionSplit) {
+                for (String kword : keyWords) {
+                    if (word.equals(kword) && !tmpTasks.contains(task)) {
                         tmpTasks.add(task);
                         break;
                     }
@@ -34,6 +35,7 @@ public class TaskList {
     public int getSize() {
         return this.tasks.size();
     }
+
     public void add(Task task) {
         this.tasks.add(task);
     }
@@ -70,7 +72,8 @@ public class TaskList {
 
     /**
      * update description of task with id
-     * @param id id of task
+     *
+     * @param id          id of task
      * @param description new description
      */
     public Task updateTaskDescription(int id, String description) {
@@ -80,13 +83,14 @@ public class TaskList {
 
     /**
      * update deadline for DeadlineTask
-     * @param id id of task
+     *
+     * @param id       id of task
      * @param deadline new deadline
      * @throws NikingodaException handle exception
      */
     public Task updateTaskDeadline(int id, String deadline) throws NikingodaException {
         Task task = this.tasks.get(id);
-        if(!(task instanceof Deadline)) {
+        if (!(task instanceof Deadline)) {
             throw new NikingodaException("You can only update deadline of Deadline task");
         }
         ((Deadline) task).updateDeadline(deadline);
@@ -95,13 +99,14 @@ public class TaskList {
 
     /**
      * update begin_time of Event task
-     * @param id id of task
+     *
+     * @param id    id of task
      * @param begin new begin_time
      * @throws NikingodaException handle error
      */
     public Task updateTaskBegin(int id, String begin) throws NikingodaException {
         Task task = this.tasks.get(id);
-        if(!(task instanceof Event)) {
+        if (!(task instanceof Event)) {
             throw new NikingodaException("You can only update begin_time of Event task");
         }
         ((Event) task).updateBegin(begin);
@@ -110,13 +115,14 @@ public class TaskList {
 
     /**
      * update end_time of Event task
-     * @param id id of task
+     *
+     * @param id  id of task
      * @param end new end_time
      * @throws NikingodaException handle error
      */
     public Task updateTaskEnd(int id, String end) throws NikingodaException {
         Task task = this.tasks.get(id);
-        if(!(task instanceof Event)) {
+        if (!(task instanceof Event)) {
             throw new NikingodaException("You can only update end_time of Event task");
         }
         ((Event) task).updateEnd(end);
