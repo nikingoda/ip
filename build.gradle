@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClass.set("nikingoda.Nikingoda")
+    mainClass.set("nikingoda.Launcher")
 }
 
 shadowJar {

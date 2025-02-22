@@ -1,4 +1,4 @@
-package nikingoda;
+package nikingoda.NikiNgoda;
 
 import nikingoda.Command.Command;
 import nikingoda.NikingodaException.NikingodaException;
