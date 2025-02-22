@@ -1,6 +1,6 @@
 package nikingoda.Command;
 
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
@@ -17,11 +17,11 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         try {
             ui.find(tasks, keyword);
         } catch (Exception e) {
-            throw new nikingodaException(e.getMessage());
+            throw new NikingodaException(e.getMessage());
         }
     }
 }

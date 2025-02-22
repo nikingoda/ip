@@ -1,6 +1,6 @@
 package nikingoda.Command;
 
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
@@ -15,12 +15,12 @@ public class UpdateBeginCommand extends UpdateCommand{
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         try {
             int id = this.getId() - 1; //change from 1-indexed to 0-indexed
             ui.updateTask(tasks.updateTaskBegin(id, newBegin));
         } catch (DateTimeParseException e) {
-            throw new nikingodaException("Begin time should be in form: 'HHmm dd/mm/yyyy'");
+            throw new NikingodaException("Begin time should be in form: 'HHmm dd/mm/yyyy'");
         }
     }
 }

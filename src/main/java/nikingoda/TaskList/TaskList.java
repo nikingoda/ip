@@ -1,6 +1,6 @@
 package nikingoda.TaskList;
 
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Task.Deadline;
 import nikingoda.Task.Event;
 import nikingoda.Task.Task;
@@ -82,12 +82,12 @@ public class TaskList {
      * update deadline for DeadlineTask
      * @param id id of task
      * @param deadline new deadline
-     * @throws nikingodaException handle exception
+     * @throws NikingodaException handle exception
      */
-    public Task updateTaskDeadline(int id, String deadline) throws nikingodaException {
+    public Task updateTaskDeadline(int id, String deadline) throws NikingodaException {
         Task task = this.tasks.get(id);
         if(!(task instanceof Deadline)) {
-            throw new nikingodaException("You can only update deadline of Deadline task");
+            throw new NikingodaException("You can only update deadline of Deadline task");
         }
         ((Deadline) task).updateDeadline(deadline);
         return task;
@@ -97,12 +97,12 @@ public class TaskList {
      * update begin_time of Event task
      * @param id id of task
      * @param begin new begin_time
-     * @throws nikingodaException handle error
+     * @throws NikingodaException handle error
      */
-    public Task updateTaskBegin(int id, String begin) throws nikingodaException {
+    public Task updateTaskBegin(int id, String begin) throws NikingodaException {
         Task task = this.tasks.get(id);
         if(!(task instanceof Event)) {
-            throw new nikingodaException("You can only update begin_time of Event task");
+            throw new NikingodaException("You can only update begin_time of Event task");
         }
         ((Event) task).updateBegin(begin);
         return task;
@@ -112,12 +112,12 @@ public class TaskList {
      * update end_time of Event task
      * @param id id of task
      * @param end new end_time
-     * @throws nikingodaException handle error
+     * @throws NikingodaException handle error
      */
-    public Task updateTaskEnd(int id, String end) throws nikingodaException {
+    public Task updateTaskEnd(int id, String end) throws NikingodaException {
         Task task = this.tasks.get(id);
         if(!(task instanceof Event)) {
-            throw new nikingodaException("You can only update end_time of Event task");
+            throw new NikingodaException("You can only update end_time of Event task");
         }
         ((Event) task).updateEnd(end);
         return task;

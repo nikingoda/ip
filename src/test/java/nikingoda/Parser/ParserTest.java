@@ -1,7 +1,7 @@
 package nikingoda.Parser;
 
 import nikingoda.Command.Command;
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Task.Deadline;
 import nikingoda.Task.Event;
 import nikingoda.Task.Task;
@@ -54,7 +54,7 @@ public class ParserTest {
         try {
             Command command = Parser.parse("list");
             assertNotNull(command, "Expected a non-null Command for a valid command string");
-        } catch (nikingodaException e) {
+        } catch (NikingodaException e) {
             fail("Unexpected nikingodaException for a valid command: " + e.getMessage());
         }
     }
@@ -62,6 +62,6 @@ public class ParserTest {
     @Test
     public void testParse_InvalidCommand() {
         // This test assumes that "abc" is not a valid command and should throw a nikingodaException.
-        assertThrows(nikingodaException.class, () -> Parser.parse("abc"));
+        assertThrows(NikingodaException.class, () -> Parser.parse("abc"));
     }
 }

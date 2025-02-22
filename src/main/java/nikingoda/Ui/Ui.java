@@ -1,6 +1,6 @@
 package nikingoda.Ui;
 
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Task.Task;
 import nikingoda.TaskList.TaskList;
 
@@ -14,7 +14,7 @@ public class Ui {
     }
 
 
-    public String read() throws nikingodaException {
+    public String read() throws NikingodaException {
         return this.sc.nextLine();
     }
 
@@ -87,7 +87,7 @@ public class Ui {
                 "____________________________________________________________");
     }
 
-    public void showError(nikingodaException e) {
+    public void showError(NikingodaException e) {
         System.out.println(e.getMessage());
     }
 }

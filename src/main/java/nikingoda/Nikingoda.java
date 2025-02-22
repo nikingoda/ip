@@ -1,7 +1,7 @@
 package nikingoda;
 
 import nikingoda.Command.Command;
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Parser.Parser;
 import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
@@ -17,7 +17,7 @@ public class Nikingoda {
         this.storage = new Storage(filePath);
         try {
             this.taskList = new TaskList(this.storage.loadTasks());
-        } catch (nikingodaException e) {
+        } catch (NikingodaException e) {
             this.ui.showError(e);
         }
     }
@@ -37,7 +37,7 @@ public class Nikingoda {
                 Command c = Parser.parse(command);
                 c.execute(taskList, ui, storage);
                 isExit = c.isExit();
-            } catch (nikingodaException e) {
+            } catch (NikingodaException e) {
                 ui.showError(e);
             }
         }

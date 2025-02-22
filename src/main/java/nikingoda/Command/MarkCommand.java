@@ -1,6 +1,6 @@
 package nikingoda.Command;
 
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
@@ -17,12 +17,12 @@ public class MarkCommand extends Command  {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws nikingodaException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
         try {
             ui.mark(tasks, id - 1);             //Id must be transform to 0-indexed
             storage.saveTask(tasks);
         } catch (IndexOutOfBoundsException e) {
-            throw new nikingodaException(" There's no task with your id");
+            throw new NikingodaException(" There's no task with your id");
         }
     }
 }

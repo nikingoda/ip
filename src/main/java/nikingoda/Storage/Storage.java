@@ -1,6 +1,6 @@
 package nikingoda.Storage;
 
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Parser.Parser;
 import nikingoda.Task.Task;
 import nikingoda.TaskList.TaskList;
@@ -16,7 +16,7 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public ArrayList<Task> loadTasks() throws nikingodaException {
+    public ArrayList<Task> loadTasks() throws NikingodaException {
         ArrayList<Task> tasks = new ArrayList<>();
         File taskFile = new File(filePath);
         if (!taskFile.exists()) {
@@ -28,12 +28,12 @@ public class Storage {
                 tasks.add(Parser.parseTask(nextLine));
             }
         } catch (Exception e) {
-            throw new nikingodaException(e.getMessage());
+            throw new NikingodaException(e.getMessage());
         }
         return tasks;
     }
 
-    public void saveTask(TaskList tasks) throws nikingodaException {
+    public void saveTask(TaskList tasks) throws NikingodaException {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (Task task : tasks.getTasks()) {
@@ -41,7 +41,7 @@ public class Storage {
             }
             writer.close();
         } catch (Exception e) {
-            throw new nikingodaException("Cannot save task");
+            throw new NikingodaException("Cannot save task");
         }
     }
 }

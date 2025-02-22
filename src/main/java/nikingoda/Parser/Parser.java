@@ -1,7 +1,7 @@
 package nikingoda.Parser;
 
 import nikingoda.Command.Command;
-import nikingoda.NikingodaException.nikingodaException;
+import nikingoda.NikingodaException.NikingodaException;
 import nikingoda.Task.Deadline;
 import nikingoda.Task.Event;
 import nikingoda.Task.Task;
@@ -20,7 +20,7 @@ public abstract class Parser {
         }
     }
 
-    public static Command parse(String command) throws nikingodaException {
+    public static Command parse(String command) throws NikingodaException {
         return Command.findCommand(command);
     }
 }
