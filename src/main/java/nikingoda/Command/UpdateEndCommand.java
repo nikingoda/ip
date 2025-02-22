@@ -10,10 +10,23 @@ import java.time.format.DateTimeParseException;
 public class UpdateEndCommand extends UpdateCommand {
     protected final String newEnd;
 
+    /**
+     * update end_time for task with id
+     * @param id id of task
+     * @param newEnd new end_time
+     */
     public UpdateEndCommand(int id, String newEnd) {
         super(id);
         this.newEnd = newEnd;
     }
+
+    /**
+     * update end_time for task
+     * @param tasks   TaskList
+     * @param ui      Ui
+     * @param storage Storage
+     * @throws NikingodaException handle for syntax invalid or if the task is not event
+     */
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {

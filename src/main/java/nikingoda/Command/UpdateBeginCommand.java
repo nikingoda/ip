@@ -10,10 +10,24 @@ import java.time.format.DateTimeParseException;
 public class UpdateBeginCommand extends UpdateCommand {
     protected final String newBegin;
 
+    /**
+     * update begin_time of task with id
+     * @param id id of task
+     * @param newBegin new begin_time
+     */
+
     public UpdateBeginCommand(int id, String newBegin) {
         super(id);
         this.newBegin = newBegin;
     }
+
+    /**
+     *
+     * @param tasks   TaskList
+     * @param ui      Ui
+     * @param storage Storage
+     * @throws NikingodaException handle syntax valid or if task is not event
+     */
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {

@@ -8,10 +8,24 @@ import nikingoda.Ui.Ui;
 public class UpdateDescriptionCommand extends UpdateCommand {
     protected final String newDescription;
 
+    /**
+     * update description of task
+     * @param id id
+     * @param newDescription new description
+     */
+
     public UpdateDescriptionCommand(int id, String newDescription) {
         super(id);
         this.newDescription = newDescription;
     }
+
+    /**
+     *
+     * @param tasks   TaskList
+     * @param ui      Ui
+     * @param storage Storage
+     * @throws NikingodaException handle syntax invalid
+     */
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {

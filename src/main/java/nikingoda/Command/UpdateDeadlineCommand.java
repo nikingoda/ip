@@ -10,10 +10,24 @@ import java.time.format.DateTimeParseException;
 public class UpdateDeadlineCommand extends UpdateCommand {
     protected final String newDeadline;
 
+    /**
+     * update deadline of task with id
+     * @param id id of task
+     * @param newDeadline new deadline
+     */
+
     public UpdateDeadlineCommand(int id, String newDeadline) {
         super(id);
         this.newDeadline = newDeadline;
     }
+
+    /**
+     *
+     * @param tasks   TaskList
+     * @param ui      Ui
+     * @param storage Storage
+     * @throws NikingodaException handle syntax invalid or if task is not deadline
+     */
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
