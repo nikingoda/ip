@@ -28,6 +28,8 @@ public class Nikingoda {
     }
 
 
+
+
     public void run() {
         ui.greet();
         boolean isExit = false;
