@@ -22,6 +22,12 @@ public class Deadline extends Task {
         this.deadline = LocalDateTime.parse(deadline, inputForm);
     }
 
+    /**
+     * Constructs a Deadline task with the given description and deadline (use to parse saving task from saving file).
+     *
+     * @param description Task description.
+     * @param deadline    Deadline in the format HHmm d/M/yyyy.
+     */
     public Deadline(String description, String deadline, Boolean isDone) {
         super(description, isDone);
         this.deadline = LocalDateTime.parse(deadline, inputForm);

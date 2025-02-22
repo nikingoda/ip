@@ -14,7 +14,7 @@ public class Event extends Task {
     private final DateTimeFormatter outputForm = DateTimeFormatter.ofPattern("h:mm a, MMM d yyyy");
 
     /**
-     * constructor for event
+     * constructor for event (use to create new file)
      *
      * @param description description
      * @param begin       begin_time
@@ -27,7 +27,7 @@ public class Event extends Task {
     }
 
     /**
-     * constructor for event
+     * constructor for event (using to parse saving task from saving file)
      *
      * @param description description
      * @param begin       begin_time
