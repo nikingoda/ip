@@ -21,7 +21,7 @@ public class Ui {
 
     public void find(TaskList taskList, String keyword) {
         System.out.println("____________________________________________________________");
-        System.out.println("\t" + "Here are the matching tasks: \n");
+        System.out.println("Here are the matching tasks: \n");
         ArrayList<Task> tmpTasks = taskList.taskContainsKeyword(keyword);
         int id = 1;
         for (Task task : tmpTasks) {
@@ -33,15 +33,15 @@ public class Ui {
 
     public void greet() {
         System.out.println("____________________________________________________________");
-        System.out.println("\t" + "Hello! I'm nikingoda\n" +
-                "\t" + "What can I do for you?");
+        System.out.println("Hello! I'm nikingoda\n" +
+                "What can I do for you?");
         System.out.println("____________________________________________________________");
     }
 
     public void exit() {
         sc.close();
         System.out.println("____________________________________________________________");
-        System.out.println("\t" + "Bye. Hope to see you again soon!");
+        System.out.println("Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________");
     }
 
@@ -55,14 +55,14 @@ public class Ui {
     public void mark(TaskList taskList, int id) {
         System.out.println("____________________________________________________________");
         System.out.println("Nice! I've marked this task as done:\n" +
-                "\t" + taskList.mark(id));
+                taskList.mark(id));
         System.out.println("____________________________________________________________");
     }
 
     public void unmark(TaskList taskList, int id) {
         System.out.println("____________________________________________________________");
         System.out.println("OK, I've marked this task as not done yet:\n" +
-                "\t" + taskList.unmark(id));
+                taskList.unmark(id));
         System.out.println("____________________________________________________________");
     }
 
