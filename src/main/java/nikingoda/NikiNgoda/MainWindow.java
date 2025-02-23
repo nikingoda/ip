@@ -1,4 +1,5 @@
 package nikingoda.NikiNgoda;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -33,7 +34,9 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Nikingoda instance */
+    /**
+     * Injects the Nikingoda instance
+     */
     public void setNikingoda(Nikingoda nikingoda) {
         this.nikingoda = nikingoda;
     }

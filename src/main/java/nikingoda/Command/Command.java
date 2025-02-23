@@ -7,6 +7,7 @@ import nikingoda.Ui.Ui;
 
 public abstract class Command {
     private String response;
+
     public static Command findCommand(String command) throws NikingodaException {
         command = command.trim();
         command = command.toLowerCase();
@@ -146,7 +147,7 @@ public abstract class Command {
     }
 
     public String getString() throws NikingodaException {
-        if(this.response == null) {
+        if (this.response == null) {
             throw new NikingodaException("Command had not been executed");
         }
         return this.response;

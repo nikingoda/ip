@@ -10,7 +10,8 @@ public class UpdateDescriptionCommand extends UpdateCommand {
 
     /**
      * update description of task
-     * @param id id
+     *
+     * @param id             id
      * @param newDescription new description
      */
 
@@ -20,7 +21,6 @@ public class UpdateDescriptionCommand extends UpdateCommand {
     }
 
     /**
-     *
      * @param tasks   TaskList
      * @param ui      Ui
      * @param storage Storage

@@ -52,6 +52,6 @@ shadowJar {
     archiveFileName = 'nikingoda.jar'
 }
 
-run{
+run {
     standardInput = System.in
 }
