@@ -17,7 +17,7 @@ easy to learn
 
 
 ## How to Run the Project 🚀
-1. [Download](https://github.com/nikingoda/ip/releases/tag/A-JarReleased) the latest release in GitHub
+1. [Download](https://github.com/nikingoda/ip/releases/tag/A-Release) the latest release in GitHub
 2. Open the terminal and run the project:
    java -jar nikingoda.jar, or click the jar file to run the project.
 
