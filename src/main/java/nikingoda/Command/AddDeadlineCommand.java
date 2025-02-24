@@ -38,6 +38,8 @@ public class AddDeadlineCommand extends AddCommand {
             tasks.add(task);
             this.setResponse("Got it, I've added this task: \n" + task);
             storage.saveTask(tasks);
+        } catch (NikingodaException e) {
+            throw e;
         } catch (DateTimeParseException e) {
             throw new NikingodaException("Invalid format, deadline should be in form: HHmm dd/mm/yyyy");
         } catch (Exception e) {

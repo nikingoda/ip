@@ -36,6 +36,8 @@ public class UpdateBeginCommand extends UpdateCommand {
 //            ui.updateTask(tasks.updateTaskBegin(id, newBegin));
             String response = "Noted. I've updated this task: \n" + tasks.updateTaskBegin(id, newBegin);
             this.setResponse(response);
+        } catch (NikingodaException e) {
+            throw e;
         } catch (DateTimeParseException e) {
             throw new NikingodaException("Begin time should be in form: 'HHmm dd/mm/yyyy'");
         }

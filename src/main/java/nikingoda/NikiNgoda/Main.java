@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private final Nikingoda nikingoda = new Nikingoda("data/tasks.txt");
+    private final Nikingoda nikingoda = new Nikingoda("data", "tasks.txt");
 
     @Override
     public void start(Stage stage) {

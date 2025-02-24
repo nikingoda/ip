@@ -35,7 +35,10 @@ public class UpdateDeadlineCommand extends UpdateCommand {
             int id = this.getId() - 1; //change from 1-indexed to 0-indexed
 //            ui.updateTask(tasks.updateTaskDeadline(id, newDeadline));
             String response = "Noted. I've updated this task: \n" + tasks.updateTaskDeadline(id, newDeadline);
+            storage.saveTask(tasks);
             this.setResponse(response);
+        } catch (NikingodaException e) {
+            throw e;
         } catch (DateTimeParseException e) {
             throw new NikingodaException(" Deadline should be in form: 'HHmm dd/mm/yyyy'");
         }

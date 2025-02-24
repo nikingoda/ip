@@ -24,6 +24,8 @@ public class DeleteCommand extends Command {
             Task task = tasks.delete(id - 1);           //Id must be transform to 0-indexed
             this.setResponse("Noted. I've removed this task: \n" + task);
             storage.saveTask(tasks);
+        } catch (NikingodaException e) {
+            throw e;
         } catch (NumberFormatException e) {
             throw new NikingodaException("Task id must be integer");
         } catch (IndexOutOfBoundsException e) {

@@ -30,6 +30,8 @@ public class AddTodoCommand extends AddCommand {
             tasks.add(task);
             this.setResponse("Got it, I've added this task: \n" + task);
             storage.saveTask(tasks);
+        } catch (NikingodaException e) {
+            throw e;
         } catch (Exception e) {
             throw new NikingodaException("Invalid command. \nShould be: todo <description>");
         }

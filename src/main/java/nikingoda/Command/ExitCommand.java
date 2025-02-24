@@ -12,8 +12,12 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NikingodaException {
-        storage.saveTask(tasks);
-        this.setResponse("Bye. Hope to see you again soon!");
+        try {
+            storage.saveTask(tasks);
+            this.setResponse("Bye. Hope to see you again soon!");
+        } catch (NikingodaException e) {
+            throw e;
+        }
     }
 
     /**

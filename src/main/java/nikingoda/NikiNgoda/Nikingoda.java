@@ -9,13 +9,14 @@ import nikingoda.Ui.Ui;
 
 public class Nikingoda {
     private final Ui ui;
-    private final Storage storage;
+    private Storage storage;
     private TaskList taskList;
 
-    public Nikingoda(String filePath) {
+    public Nikingoda(String folderPath, String filePath) {
         this.ui = new Ui();
-        this.storage = new Storage(filePath);
+
         try {
+            this.storage = new Storage(folderPath, filePath);
             this.taskList = new TaskList(this.storage.loadTasks());
         } catch (NikingodaException e) {
             this.ui.showError(e);
@@ -23,7 +24,7 @@ public class Nikingoda {
     }
 
     public static void main(String[] args) {
-        Nikingoda nikingoda = new Nikingoda("data/tasks.txt");
+        Nikingoda nikingoda = new Nikingoda("data", "tasks.txt");
         nikingoda.run();
     }
 

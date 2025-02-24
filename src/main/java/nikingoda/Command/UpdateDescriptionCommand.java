@@ -35,6 +35,7 @@ public class UpdateDescriptionCommand extends UpdateCommand {
         }
 //        ui.updateTask(tasks.updateTaskDescription(id, newDescription.trim()));
         String response = "Noted. I've updated this task: \n" + tasks.updateTaskDescription(id, newDescription);
+        storage.saveTask(tasks);
         this.setResponse(response);
     }
 }
