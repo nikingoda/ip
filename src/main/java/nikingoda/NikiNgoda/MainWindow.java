@@ -1,5 +1,6 @@
 package nikingoda.NikiNgoda;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -53,7 +54,25 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getNikingodaDialog(response, dukeImage)
         );
+        if(input.equals("bye")) {
+            try {
+                exitProgram();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                Platform.exit();
+            }
+        }
         userInput.clear();
+    }
+
+
+    /**
+     * wait for 500 ms then exit
+     * @throws InterruptedException handle error
+     */
+    public void exitProgram() throws InterruptedException {
+        wait(5000);
+        Platform.exit();
     }
 }
 
