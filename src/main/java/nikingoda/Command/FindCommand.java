@@ -27,7 +27,7 @@ public class FindCommand extends Command {
             StringBuilder response = new StringBuilder("Here are the matching tasks: \n");
             int id = 1;
             for (Task task : tmpTasks) {
-                response.append(id).append(". ").append(task.getDescription()).append("\n");
+                response.append(id).append(". ").append(task.toString()).append("\n");
                 id++;
             }
             this.setResponse(response.toString());
