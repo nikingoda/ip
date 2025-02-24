@@ -47,7 +47,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "nikingoda"
     archiveClassifier = null
     archiveFileName = 'nikingoda.jar'
 }
