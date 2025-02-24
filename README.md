@@ -7,12 +7,12 @@ easy to learn
 ~~FAST~~ SUPER FAST to use.
 
 ## Features of the Project 🛠️
-- [x] *Task Management:* Managing tasks (todo, deadline, event)
-- [x] *Note done tasks* Mark and unmark done/not done task (mark, unmark)
-- [x] *List task:* List all tasks (list)
-- [x] *Find tasks easily:* Find tasks with keyword (find)
-- [x] *Update task details easily:* Edit task details easily (update)
-- [x] *File Storage:* Save and load tasks from a file on disk.
+- [x] **Task Management:** Managing tasks (todo, deadline, event)
+- [x] **Note done tasks:** Mark and unmark done/not done task (mark, unmark)
+- [x] **List task:** List all tasks (list)
+- [x] **Find tasks easily:** Find tasks with keyword (find)
+- [x] **Update task details easily:** Edit task details easily (update)
+- [x] **File Storage:** Save and load tasks from a file on disk.
 - [ ] Reminders (coming soon)
 
 
