@@ -21,6 +21,7 @@ easy to learn
 2. Open the terminal and run the project:
    java -jar nikingoda.jar, or click the jar file to run the project.
 
+
 ## Supported Commands 📋
 Here’s a list of commands Nikingoda recognizes:
 - list: Display all tasks.
