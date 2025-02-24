@@ -25,16 +25,16 @@ easy to learn
 ## Supported Commands 📋
 Here’s a list of commands Nikingoda recognizes:
 - list: Display all tasks.
-- todo <description> : Add todo task with description
-- deadline <description> /by <deadline> : Add deadline task 
-- event <description> /from <begin_time> /to <end_time> : Add event task
-- delete <id> : Delete task with given id.
-- mark <id>, unmark <id>: mark or unmark the task with id as done.
-- find <keyword>: find tasks match with given keyword.
-- update <id> /description <new_description>: update description of task with id
-- update <id> /by <new_deadline> : update deadline of task with id
-- update <id> /from <new_begin> : update begin_time of task with id
-- update <id> /to <new_end> : update end_time of task with id
+- todo <task_description> : Add todo task with description
+- deadline <task_description> /by <task_deadline> : Add deadline task 
+- event <task_description> /from <begin_time> /to <end_time> : Add event task
+- delete <task_id> : Delete task with given id.
+- mark <task_id>, unmark <id>: mark or unmark the task with id as done.
+- find <key_word>: find tasks match with given keyword.
+- update <task_id> /description <new_description>: update description of task with id
+- update <task_id> /by <new_deadline> : update deadline of task with id
+- update <task_id> /from <new_begin> : update begin_time of task with id
+- update <task_id> /to <new_end> : update end_time of task with id
 - bye: exit the chatbot.
 
 **Note**: deadline, end_time and begin_time of task should be in form <HHmm dd/mm/yyyy> 
