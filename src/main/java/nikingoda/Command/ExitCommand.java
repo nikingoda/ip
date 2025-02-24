@@ -5,7 +5,7 @@ import nikingoda.Storage.Storage;
 import nikingoda.TaskList.TaskList;
 import nikingoda.Ui.Ui;
 
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
     /**
      * Command to exit chatbot
      */
@@ -18,6 +18,7 @@ public class ExitCommand extends Command{
 
     /**
      * isExit() of exit command need to return true as we exit the program
+     *
      * @return true as this is exit command
      */
     @Override

@@ -12,7 +12,8 @@ public class UpdateBeginCommand extends UpdateCommand {
 
     /**
      * update begin_time of task with id
-     * @param id id of task
+     *
+     * @param id       id of task
      * @param newBegin new begin_time
      */
 
@@ -22,7 +23,6 @@ public class UpdateBeginCommand extends UpdateCommand {
     }
 
     /**
-     *
      * @param tasks   TaskList
      * @param ui      Ui
      * @param storage Storage

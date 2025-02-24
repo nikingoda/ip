@@ -10,6 +10,7 @@ import nikingoda.Task.Todo;
 public abstract class Parser {
     /**
      * parse task from each line of saved txt file
+     *
      * @param line line that contain information about task
      * @return Task
      */
@@ -27,6 +28,7 @@ public abstract class Parser {
 
     /**
      * parse Command from input command of user
+     *
      * @param command input command of user
      * @return Command being parsed
      * @throws NikingodaException handle whether if syntax invalid

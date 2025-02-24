@@ -26,7 +26,7 @@ public class Event extends Task {
         super(description);
         LocalDateTime tmpBegin = LocalDateTime.parse(begin, inputForm);
         LocalDateTime tmpEnd = LocalDateTime.parse(end, inputForm);
-        if(tmpEnd.isBefore(tmpBegin)) {
+        if (tmpEnd.isBefore(tmpBegin)) {
             throw new NikingodaException("End time must be after begin time");
         }
         this.begin = tmpBegin;
@@ -76,7 +76,7 @@ public class Event extends Task {
      */
     public void updateBegin(String newBegin) throws NikingodaException {
         LocalDateTime tmpBegin = LocalDateTime.parse(newBegin, inputForm);
-        if(this.end.isBefore(tmpBegin)) {
+        if (this.end.isBefore(tmpBegin)) {
             throw new NikingodaException("End time must be after begin time");
         }
         this.begin = tmpBegin;
@@ -89,7 +89,7 @@ public class Event extends Task {
      */
     public void updateEnd(String newEnd) throws NikingodaException {
         LocalDateTime tmpEnd = LocalDateTime.parse(newEnd, inputForm);
-        if(this.begin.isAfter(tmpEnd)) {
+        if (this.begin.isAfter(tmpEnd)) {
             throw new NikingodaException("End time must be after begin time");
         }
         this.end = tmpEnd;

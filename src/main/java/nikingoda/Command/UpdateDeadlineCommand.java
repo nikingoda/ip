@@ -12,7 +12,8 @@ public class UpdateDeadlineCommand extends UpdateCommand {
 
     /**
      * update deadline of task with id
-     * @param id id of task
+     *
+     * @param id          id of task
      * @param newDeadline new deadline
      */
 
@@ -22,7 +23,6 @@ public class UpdateDeadlineCommand extends UpdateCommand {
     }
 
     /**
-     *
      * @param tasks   TaskList
      * @param ui      Ui
      * @param storage Storage

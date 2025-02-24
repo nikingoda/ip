@@ -12,7 +12,8 @@ public class UpdateEndCommand extends UpdateCommand {
 
     /**
      * update end_time for task with id
-     * @param id id of task
+     *
+     * @param id     id of task
      * @param newEnd new end_time
      */
     public UpdateEndCommand(int id, String newEnd) {
@@ -22,6 +23,7 @@ public class UpdateEndCommand extends UpdateCommand {
 
     /**
      * update end_time for task
+     *
      * @param tasks   TaskList
      * @param ui      Ui
      * @param storage Storage
