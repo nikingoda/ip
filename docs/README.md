@@ -6,6 +6,7 @@ text-based
 easy to learn
 ~~FAST~~ SUPER FAST to use.
 
+
 ## Features of the Project 🛠️
 - [x] *Task Management:* Managing tasks (todo, deadline, event)
 - [x] *Note done tasks* Mark and unmark done/not done task (mark, unmark)
