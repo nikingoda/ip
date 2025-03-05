@@ -34,10 +34,10 @@ public class AddEventCommand extends AddCommand {
                 throw new NikingodaException("Description must not be blank!!!");
             }
             if (begin.isBlank()) {
-                throw new NikingodaException("please add begin time");
+                throw new NikingodaException("Please add begin time");
             }
             if (end.isBlank()) {
-                throw new NikingodaException("please add end time");
+                throw new NikingodaException("Please add end time");
             }
             Task task = new Event(description, begin, end);
             tasks.add(task);
