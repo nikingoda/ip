@@ -24,8 +24,6 @@ public class UnmarkCommand extends Command {
             String response = "OK, I've marked this task as not done yet:\n" + tasks.unmark(id - 1); //Id must be transform to 0-indexed
             this.setResponse(response);
             storage.saveTask(tasks);
-        } catch (NikingodaException e) {
-            throw e;
         } catch (IndexOutOfBoundsException e) {
             throw new NikingodaException("There's no task with your id");
         }
