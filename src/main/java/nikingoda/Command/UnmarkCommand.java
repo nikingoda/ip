@@ -27,7 +27,7 @@ public class UnmarkCommand extends Command {
         } catch (NikingodaException e) {
             throw e;
         } catch (IndexOutOfBoundsException e) {
-            throw new NikingodaException(" There's no task with your id");
+            throw new NikingodaException("There's no task with your id");
         }
     }
 }
