@@ -76,9 +76,15 @@ public class TaskList {
      * @param id          id of task
      * @param description new description
      */
-    public Task updateTaskDescription(int id, String description) {
-        this.tasks.get(id).updateDescription(description);
-        return tasks.get(id);
+    public Task updateTaskDescription(int id, String description) throws NikingodaException {
+        try {
+            this.tasks.get(id).updateDescription(description);
+            return tasks.get(id);
+        } catch (IndexOutOfBoundsException e) {
+            throw new NikingodaException("There is no task with given id");
+        } catch (Exception e) {
+            throw new NikingodaException(e.getMessage());
+        }
     }
 
     /**
@@ -89,12 +95,18 @@ public class TaskList {
      * @throws NikingodaException handle exception
      */
     public Task updateTaskDeadline(int id, String deadline) throws NikingodaException {
-        Task task = this.tasks.get(id);
-        if (!(task instanceof Deadline)) {
-            throw new NikingodaException("You can only update deadline of Deadline task");
+        try {
+            Task task = this.tasks.get(id);
+            if (!(task instanceof Deadline)) {
+                throw new NikingodaException("You can only update deadline of Deadline task");
+            }
+            ((Deadline) task).updateDeadline(deadline);
+            return task;
+        } catch (IndexOutOfBoundsException e) {
+            throw new NikingodaException("There is no task with given id");
+        } catch (Exception e) {
+            throw new NikingodaException(e.getMessage());
         }
-        ((Deadline) task).updateDeadline(deadline);
-        return task;
     }
 
     /**
@@ -105,12 +117,18 @@ public class TaskList {
      * @throws NikingodaException handle error
      */
     public Task updateTaskBegin(int id, String begin) throws NikingodaException {
-        Task task = this.tasks.get(id);
-        if (!(task instanceof Event)) {
-            throw new NikingodaException("You can only update begin_time of Event task");
+        try {
+            Task task = this.tasks.get(id);
+            if (!(task instanceof Event)) {
+                throw new NikingodaException("You can only update begin_time of Event task");
+            }
+            ((Event) task).updateBegin(begin);
+            return task;
+        } catch (IndexOutOfBoundsException e) {
+            throw new NikingodaException("There is no task with given id");
+        } catch (Exception e) {
+            throw new NikingodaException(e.getMessage());
         }
-        ((Event) task).updateBegin(begin);
-        return task;
     }
 
     /**
@@ -121,11 +139,17 @@ public class TaskList {
      * @throws NikingodaException handle error
      */
     public Task updateTaskEnd(int id, String end) throws NikingodaException {
-        Task task = this.tasks.get(id);
-        if (!(task instanceof Event)) {
-            throw new NikingodaException("You can only update end_time of Event task");
+        try {
+            Task task = this.tasks.get(id);
+            if (!(task instanceof Event)) {
+                throw new NikingodaException("You can only update end_time of Event task");
+            }
+            ((Event) task).updateEnd(end);
+            return task;
+        } catch (IndexOutOfBoundsException e) {
+            throw new NikingodaException("There is no task with given id");
+        } catch (Exception e) {
+            throw new NikingodaException(e.getMessage());
         }
-        ((Event) task).updateEnd(end);
-        return task;
     }
 }
